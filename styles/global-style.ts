@@ -6,6 +6,7 @@ const GlobalStyle = createGlobalStyle`
 	margin: 0;
 	padding: 0;
 	border: 0;
+	box-sizing: border-box;
   font-family: 'Roboto Slab', serif;
 }
 
@@ -21,6 +22,7 @@ footer, header, hgroup, menu, nav, section {
 
 body {
 	line-height: 1;
+
 }
 
 ol, ul {

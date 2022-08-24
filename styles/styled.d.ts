@@ -5,6 +5,9 @@ declare module 'styled-components' {
     fontSize: {};
     colors: {
       black: string;
+      gray: string;
+      darkGray: string;
+      purple: string;
     };
   }
 }
