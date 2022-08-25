@@ -32,5 +32,5 @@ const Main = styled.main`
   background-color: ${({ theme }) => theme.colors.gray};
   position: relative;
   height: 100%;
-  padding-top: 6rem;
+  padding-top: 9.6rem;
 `;
