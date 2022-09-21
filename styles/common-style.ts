@@ -18,12 +18,12 @@ export const ImageWrapper = styled.div`
 
 export const ParagraphStyle = css<{
   fontSize: string;
-  color: 'black' | 'gray' | 'darkGray' | 'deepDarkGray';
+  color?: 'black' | 'gray' | 'darkGray' | 'deepDarkGray';
   fontWeight?: number;
   margin?: string;
 }>`
   font-size: ${({ fontSize }) => fontSize};
-  color: ${({ theme, color }) => theme.colors[color]};
+  color: ${({ theme, color }) => (color ? theme.colors[color] : '#303030')};
   font-weight: ${({ fontWeight }) => fontWeight || 400};
   line-height: 1.4;
   margin: ${({ margin }) => margin};

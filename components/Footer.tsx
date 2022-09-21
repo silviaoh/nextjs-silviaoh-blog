@@ -39,11 +39,10 @@ const Frame = styled.footer`
   position: relative;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   gap: 2rem;
   line-height: 60px;
   padding: 2.2rem;
-  background-color: ${({ theme }) => theme.colors.gray};
+  background-color: #fff;
 
   hr {
     border: 0.5px solid ${({ theme }) => theme.colors.darkGray};

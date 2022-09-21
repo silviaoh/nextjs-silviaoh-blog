@@ -8,7 +8,6 @@ import { useRouter } from 'next/router';
 
 const Navigation = () => {
   const router = useRouter();
-  console.log('router.pathname', router.pathname);
   return (
     <Frame>
       <ProfileImageWrapper width="4.6rem" height="4.6rem" borderRadius="2.3rem">
@@ -21,9 +20,9 @@ const Navigation = () => {
       </ProfileImageWrapper>
 
       <NavList pathname={router.pathname}>
-        <Link href="/">Home</Link>
-        <Link href="/blog">Blog</Link>
-        <Link href="/about">About</Link>
+        {/* <Link href="/">Home</Link> */}
+        <Link href="/">Blog</Link>
+        {/* <Link href="/about">About</Link> */}
       </NavList>
     </Frame>
   );
