@@ -5,6 +5,9 @@ import theme from '../styles/theme';
 import Layout from '../components/Layout';
 import path from 'path';
 import matter from 'gray-matter';
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+config.autoAddCss = false;
 
 const MyApp = ({ Component, pageProps, props }: any) => {
   return (
@@ -20,8 +23,8 @@ const MyApp = ({ Component, pageProps, props }: any) => {
 export default MyApp;
 
 const fs = require('fs');
-let test: any = [];
-const accessDirectoryOrFile = (directory: string) => {
+
+const accessDirectoryOrFile = (directory: string, urlArray: any) => {
   try {
     if (fs?.readdirSync(directory).length > 0) {
       fs.readdirSync(directory).forEach((parent: any) => {
@@ -29,10 +32,13 @@ const accessDirectoryOrFile = (directory: string) => {
           process.cwd(),
           `${directory.split('/').slice(5).join('/')}/${parent}`,
         );
-        if (folderPath.includes('.mdx')) test.push(folderPath);
-        accessDirectoryOrFile(folderPath);
+        if (folderPath.includes('.mdx')) {
+          urlArray.push(folderPath);
+          return;
+        }
+        accessDirectoryOrFile(folderPath, urlArray);
       });
-      return test;
+      return urlArray;
     }
   } catch (err) {
     return;
@@ -41,8 +47,8 @@ const accessDirectoryOrFile = (directory: string) => {
 
 MyApp.getInitialProps = async () => {
   const folderPath = path.join(process.cwd(), 'contents');
-
-  const mdxFileUrls = accessDirectoryOrFile(folderPath);
+  let urlArray: any = [];
+  const mdxFileUrls = accessDirectoryOrFile(folderPath, urlArray);
 
   const posts = mdxFileUrls.reduce((newArr: any, cur: any) => {
     const rawFileSource = fs.readFileSync(cur);
@@ -66,7 +72,6 @@ MyApp.getInitialProps = async () => {
   }, []);
 
   const sideNavCategories = posts.reduce((newArr: any, cur: any) => {
-    console.log('cur.categories', cur.categories);
     const largeCategoryName = cur.categories.large;
     const mediumCategoryName = cur.categories.medium;
     const smallCategoryName = cur.categories.small;
@@ -78,8 +83,6 @@ MyApp.getInitialProps = async () => {
       const largeCategoryIdx = newArr.findIndex(
         (v: any) => v.name === largeCategoryName,
       );
-
-      console.log('index', largeCategoryIdx);
 
       const isMediumCategoryExist = newArr[largeCategoryIdx].children.find(
         (v: any) => v.name === mediumCategoryName,
@@ -136,6 +139,8 @@ MyApp.getInitialProps = async () => {
 
     return newArr;
   }, []);
+
+  console.log(posts.length);
 
   return {
     props: { posts, sideNavCategories },

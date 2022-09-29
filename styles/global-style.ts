@@ -2,12 +2,24 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
 
+@font-face {
+  font-family: 'D2Coding';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/D2Coding.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
 	margin: 0;
 	padding: 0;
 	border: 0;
 	box-sizing: border-box;
-	font-family: 'Noto Sans KR', sans-serif;
+	font-family: 'SCoreDream', sans-serif;
+
+}
+
+li {
+	cursor: default;
 }
 
 html {

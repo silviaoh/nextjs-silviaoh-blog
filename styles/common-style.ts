@@ -34,3 +34,22 @@ export const ParagraphStyle = css<{
 export const Paragraph = styled.p`
   ${ParagraphStyle}
 `;
+
+export const FlexWrapperStyle = css<{
+  flexDirection?: string;
+  justifyContent?: string;
+  alignItems?: string;
+  gap?: string;
+  margin?: string;
+}>`
+  display: flex;
+  justify-content: ${({ justifyContent }) => justifyContent};
+  flex-direction: ${({ flexDirection }) => flexDirection};
+  align-items: ${({ alignItems }) => alignItems};
+  gap: ${({ gap }) => gap};
+  margin: ${({ margin }) => margin};
+`;
+
+export const FlexWrapper = styled.div`
+  ${FlexWrapperStyle}
+`;

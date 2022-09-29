@@ -41,7 +41,11 @@ class MyDocument extends Document {
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap"
+            href="https://webfontworld.github.io/earlyfont/EF_Diary.css"
+            rel="stylesheet"
+          />
+          <link
+            href="https://webfontworld.github.io/SCoreDream/SCoreDream.css"
             rel="stylesheet"
           />
         </Head>
