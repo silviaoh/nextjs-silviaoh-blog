@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ImageWrapper } from './Common.style';
+import { ImageWrapper } from '../../styles/Common';
 import test from '../public/images/test.jpeg';
 import Image from 'next/image';
 

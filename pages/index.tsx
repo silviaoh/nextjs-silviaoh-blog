@@ -1,53 +1,28 @@
-import styled from 'styled-components';
 import Head from 'next/head';
-import React, { useEffect, useState } from 'react';
-import {
-  ImageWrapper,
-  Paragraph,
-  ParagraphStyle,
-} from '../components/common/Common.style';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { GetStaticProps } from 'next';
-import path from 'path';
-import fs from 'fs';
+import React from 'react';
 import matter from 'gray-matter';
-import RootLayout from '../components/layout/RootLayout';
-import { getFileBySlug, getFiles } from '../utils/mdxUtils';
+import { getDirectory, getFile } from '../src/utils/mdxUtils';
+import BlogView from '../src/views/BlogView';
 
-const Blog = (props: any) => {
-  console.log('props', props);
-  // const router = useRouter();
-
-  // const { posts } = props;
-  // const [selectedCategory, setSelectedCategory] = useState('all');
-  // const [postsState, setPostsState] = useState(posts);
-
-  // useEffect(() => {
-  //   setPostsState(
-  //     selectedCategory === 'all'
-  //       ? posts
-  //       : posts.filter((post: any) => post.category === selectedCategory),
-  //   );
-  // }, [selectedCategory]);
-
+const BlogList = (props: any) => {
   return (
     <React.Fragment>
       <Head>
         <title>BLOG</title>
       </Head>
-
-      <RootLayout {...props}></RootLayout>
+      <BlogView {...props} />
     </React.Fragment>
   );
 };
-// [{}]
+export default BlogList;
+
 export const getStaticProps = async () => {
-  const directories = getFiles('') || [];
+  const directories = getDirectory('') || [];
 
   const blogPostList = directories.reduce((array: any, directory) => {
-    const files = getFiles(directory)?.reduce((filesArray: any, file) => {
-      const source = getFileBySlug(directory, file.replace('.mdx', ''));
+    const files = getDirectory(directory)?.reduce((filesArray: any, file) => {
+      const source = getFile(directory, file.replace('.mdx', ''));
+
       const { content, data } = matter(source);
       return [
         ...filesArray,
@@ -74,9 +49,3 @@ export const getStaticProps = async () => {
   );
   return { props: { count: allBlogPostCount, blogPostList } };
 };
-
-export default Blog;
-
-const MainFrame = styled.section`
-  padding: 5rem;
-`;

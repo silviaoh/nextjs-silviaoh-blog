@@ -2,10 +2,14 @@ import React from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 import sideNavBackgroundImg from '/public/images/sidenav.jpg';
-import { RainbowBorderStyle, RainbowTextStyle } from './Animation.style';
-import { FlexWrapper, ImageWrapper, Paragraph } from './Common.style';
+import { RainbowBorderStyle, RainbowTextStyle } from '../../styles/Animation';
+import { FlexWrapper, ImageWrapper, Paragraph } from '../../styles/Common';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSeedling, faFeather } from '@fortawesome/free-solid-svg-icons';
+import {
+  faSeedling,
+  faFeather,
+  faEllipsis,
+} from '@fortawesome/free-solid-svg-icons';
 
 const SideNavigation = (props: any) => {
   const { blogPostList, count } = props;
@@ -32,16 +36,11 @@ const SideNavigation = (props: any) => {
         <CategoryWrapper className="all">
           <FontAwesomeIcon icon={faSeedling} width={12} /> All
           <span>{count}</span>
+          <FontAwesomeIcon icon={faEllipsis} width={10} />
         </CategoryWrapper>
         {blogPostList?.map((post: any) => {
           return (
             <React.Fragment>
-              {/* <CategoryWrapper className="large--category-wrapper">
-                  ‥‥
-                  <Paragraph fontSize="1.3rem" fontWeight={500}>
-                    {post.categoryName}
-                  </Paragraph>
-                </CategoryWrapper> */}
               <CategoryWrapper className="category-wrapper">
                 <FlexWrapper gap="0.6rem">
                   <FontAwesomeIcon icon={faFeather} width={12} />
@@ -92,7 +91,7 @@ const SideNavTopImage = styled.div<{ src: any }>`
 
 const ProfileImageWrapper = styled(ImageWrapper)`
   position: absolute;
-  top: calc(100px - 5rem);
+  top: calc(100px - 15rem);
   left: 50%;
   transform: translateX(-50%);
   box-shadow: 1px 4px 18px 0px rgba(58, 59, 59, 0.57);
@@ -115,7 +114,7 @@ const RoundDiv = styled.div`
 `;
 
 const NicknameWrapper = styled.div`
-  margin-top: 7rem;
+  margin-top: -2rem;
 
   > p {
     text-align: center;

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import SideNavigation from '../common/SideNavigation';
 
-const RootLayout = (props: any) => {
+const PrimaryLayout = (props: any) => {
   const { children, blogPostList, count } = props;
 
   return (
@@ -13,7 +13,7 @@ const RootLayout = (props: any) => {
   );
 };
 
-export default RootLayout;
+export default PrimaryLayout;
 
 const RootLayoutSection = styled.section`
   display: flex;

@@ -7,11 +7,8 @@ import matter from 'gray-matter';
 import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import { useRouter } from 'next/router';
-import { Highlights } from '../../components/common/Highlights';
-import {
-  Paragraph,
-  ParagraphStyle,
-} from '../../components/common/Common.style';
+import { Highlights } from '../../src/components/common/Highlights';
+import { Paragraph, ParagraphStyle } from '../../src/styles/Common';
 import rehypeHighlight from 'rehype-highlight';
 
 /**

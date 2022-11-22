@@ -1,8 +1,7 @@
 import React from 'react';
-import GlobalStyle from '../components/common/Global.style';
+import GlobalStyle from '../src/styles/Global';
 import { ThemeProvider } from 'styled-components';
-import theme from '../components/common/Theme.style';
-import RootLayout from '../components/layout/RootLayout';
+import theme from '../src/styles/Theme';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 config.autoAddCss = false;
