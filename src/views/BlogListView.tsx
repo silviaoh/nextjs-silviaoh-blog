@@ -60,7 +60,7 @@ const MainImageSection = styled.section`
 `;
 
 const TitleH1 = styled.h1`
-  font-size: 3.2rem;
+  font-size: 5rem;
   color: ${({ theme }) => theme.colors.white};
   z-index: 1;
 `;

@@ -14,8 +14,7 @@ const GlobalStyle = createGlobalStyle`
 	padding: 0;
 	border: 0;
 	box-sizing: border-box;
-	font-family: 'SCoreDream', sans-serif;
-
+	font-family: 'Noto Sans', sans-serif;
 }
 
 li {
