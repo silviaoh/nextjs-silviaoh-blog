@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ImageWrapper } from '../../styles/Common';
+import { ImageBox } from '../../styles/Common';
 import test from '../public/images/test.jpeg';
 import Image from 'next/image';
 
@@ -12,22 +12,22 @@ const Footer = (props: Props) => {
       <hr />
 
       <LinkButtonWrapper>
-        <ImageWrapper width="1.8rem" height="1.8rem" borderRadius="0.9rem">
+        <ImageBox width="1.8rem" height="1.8rem" borderRadius="0.9rem">
           <Image
             src={test}
             layout="fill"
             objectFit="cover"
             objectPosition={'center'}
           />
-        </ImageWrapper>
-        <ImageWrapper width="1.8rem" height="1.8rem" borderRadius="0.9rem">
+        </ImageBox>
+        <ImageBox width="1.8rem" height="1.8rem" borderRadius="0.9rem">
           <Image
             src={test}
             layout="fill"
             objectFit="cover"
             objectPosition={'center'}
           />
-        </ImageWrapper>
+        </ImageBox>
       </LinkButtonWrapper>
     </Frame>
   );

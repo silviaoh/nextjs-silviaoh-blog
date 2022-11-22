@@ -34,5 +34,7 @@ const RootLayoutSection = styled.section`
 const Main = styled.main`
   background-color: #fff;
   position: relative;
-  height: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  overflow: auto;
 `;

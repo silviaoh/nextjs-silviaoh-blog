@@ -23,7 +23,7 @@ li {
 }
 
 html {
-  font-size: 10px;
+	font-size: 62.5%;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -34,6 +34,7 @@ footer, header, hgroup, menu, nav, section {
 
 body {
 	line-height: 1;
+	overflow: hidden;
 }
 
 ul,ol {

@@ -1,16 +1,37 @@
-import Head from 'next/head';
 import React from 'react';
+import Head from 'next/head';
 import matter from 'gray-matter';
-import { getDirectory, getFile } from '../src/utils/mdxUtils';
-import BlogView from '../src/views/BlogView';
 
-const BlogList = (props: any) => {
+import BlogListView from '../src/views/BlogListView';
+import { getDirectory, getFile } from '../src/utils/mdxUtils';
+
+interface IStaticPostListData {
+  title: string;
+  createAt: string;
+  thumbnail: string;
+  tags: string[];
+  description: string;
+  author: string;
+}
+
+interface IStaticPostList {
+  data: IStaticPostListData;
+  content: string;
+}
+
+interface IBlogList {
+  categoryName: string;
+  blogPostList: IStaticPostList[];
+  count: number;
+}
+
+const BlogList = (props: IBlogList) => {
   return (
     <React.Fragment>
       <Head>
         <title>BLOG</title>
       </Head>
-      <BlogView {...props} />
+      <BlogListView {...props} />
     </React.Fragment>
   );
 };
@@ -42,6 +63,8 @@ export const getStaticProps = async () => {
       },
     ];
   }, []);
+
+  console.log('blogPostList', blogPostList[0].files);
 
   const allBlogPostCount = blogPostList.reduce(
     (count: number, currPost: any) => count + currPost.count,

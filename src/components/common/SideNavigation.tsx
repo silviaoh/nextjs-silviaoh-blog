@@ -3,7 +3,7 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import sideNavBackgroundImg from '/public/images/sidenav.jpg';
 import { RainbowBorderStyle, RainbowTextStyle } from '../../styles/Animation';
-import { FlexWrapper, ImageWrapper, Paragraph } from '../../styles/Common';
+import { FlexWrapper, ImageBox, Paragraph } from '../../styles/Common';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faSeedling,
@@ -16,14 +16,14 @@ const SideNavigation = (props: any) => {
   return (
     <SideNavigationLayout>
       <SideNavTopImage src={sideNavBackgroundImg} />
-      <ProfileImageWrapper width="10rem" height="10rem" borderRadius="10px">
+      <ProfileImageBox width="10rem" height="10rem" borderRadius="10px">
         <Image
           src="/images/profile.jpeg"
           layout="fill"
           objectFit="cover"
           objectPosition={'center'}
         />
-      </ProfileImageWrapper>
+      </ProfileImageBox>
       <NicknameWrapper>
         <Paragraph fontSize="1.6rem" fontWeight={500}>
           silvia_oh_dev_story
@@ -73,6 +73,7 @@ const SideNavigationLayout = styled.aside`
   box-shadow: 0px 0px 5px 0px rgba(168, 159, 253, 0.2);
   -webkit-box-shadow: 0px 0px 5px 0px rgba(168, 159, 253, 0.2);
   -moz-box-shadow: 0px 0px 5px 0px rgba(168, 159, 253, 0.2);
+  z-index: 2;
 
   > ul {
     display: flex;
@@ -89,9 +90,9 @@ const SideNavTopImage = styled.div<{ src: any }>`
   background-attachment: scroll;
 `;
 
-const ProfileImageWrapper = styled(ImageWrapper)`
+const ProfileImageBox = styled(ImageBox)`
   position: absolute;
-  top: calc(100px - 15rem);
+  top: calc(100px - 5rem);
   left: 50%;
   transform: translateX(-50%);
   box-shadow: 1px 4px 18px 0px rgba(58, 59, 59, 0.57);
@@ -114,7 +115,7 @@ const RoundDiv = styled.div`
 `;
 
 const NicknameWrapper = styled.div`
-  margin-top: -2rem;
+  margin-top: 8rem;
 
   > p {
     text-align: center;

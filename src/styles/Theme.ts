@@ -3,9 +3,10 @@ import { DefaultTheme } from 'styled-components';
 const fontSize = {};
 
 const colors = {
-  black: '#000',
+  white: '#fff',
+  black: 'rgb(51, 51, 51)',
   gray: '#F8F8F8',
-  darkGray: '#a9a9a9',
+  darkGray: 'rgb(94, 94, 94)',
   deepDarkGray: '#6e6e6e',
   purple: '#94A7DF',
 };

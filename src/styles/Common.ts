@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components';
 
-export const ImageWrapperStyle = css<{
+export const ImageBoxStyle = css<{
   width: string;
   height: string;
-  borderRadius: string;
+  borderRadius?: string;
 }>`
   position: relative;
   width: ${({ width }) => width};
@@ -12,8 +12,8 @@ export const ImageWrapperStyle = css<{
   overflow: hidden;
 `;
 
-export const ImageWrapper = styled.div`
-  ${ImageWrapperStyle}
+export const ImageBox = styled.div`
+  ${ImageBoxStyle}
 `;
 
 export const ParagraphStyle = css<{
@@ -23,7 +23,8 @@ export const ParagraphStyle = css<{
   margin?: string;
 }>`
   font-size: ${({ fontSize }) => fontSize};
-  color: ${({ theme, color }) => (color ? theme.colors[color] : '#303030')};
+  color: ${({ theme, color }) =>
+    color ? theme.colors[color] : theme.colors.darkGray};
   font-weight: ${({ fontWeight }) => fontWeight || 400};
   line-height: 1.4;
   margin: ${({ margin }) => margin};
@@ -48,6 +49,30 @@ export const FlexWrapperStyle = css<{
   align-items: ${({ alignItems }) => alignItems};
   gap: ${({ gap }) => gap};
   margin: ${({ margin }) => margin};
+`;
+
+export const FlexMixin = ({
+  flexDirection,
+  justifyContent,
+  alignItems,
+  gap,
+  margin,
+  flexWrap,
+}: {
+  flexDirection?: string;
+  justifyContent?: string;
+  alignItems?: string;
+  gap?: string;
+  margin?: string;
+  flexWrap?: string;
+}) => css`
+  display: flex;
+  justify-content: ${justifyContent};
+  flex-direction: ${flexDirection};
+  align-items: ${alignItems};
+  gap: ${gap};
+  margin: ${margin};
+  flex-wrap: ${flexWrap};
 `;
 
 export const FlexWrapper = styled.div`
