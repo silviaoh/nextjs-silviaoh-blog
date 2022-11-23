@@ -5,13 +5,9 @@ import PrimaryLayout from '../components/layouts/PrimaryLayout';
 import { FlexMixin } from '../styles/Common';
 
 const BlogView = (props: any) => {
-  const test = {
-    tag: 'tag',
-    title: 'title',
-    description: 'description',
-    author: 'author',
-    createdAt: 'createdAt',
-  };
+  const { files } = props;
+
+  console.log('props', files);
 
   return (
     <PrimaryLayout {...props}>
@@ -19,17 +15,7 @@ const BlogView = (props: any) => {
         <TitleH1>All History</TitleH1>
         <SubTitleH3>차곡차곡 담아두는 기록</SubTitleH3>
       </MainImageSection>
-      <CardListSection>
-        <BlogPostCard {...test} />
-        <BlogPostCard {...test} />
-        <BlogPostCard {...test} />
-        <BlogPostCard {...test} />
-        <BlogPostCard {...test} />
-        <BlogPostCard {...test} />
-        <BlogPostCard {...test} />
-        <BlogPostCard {...test} />
-        <BlogPostCard {...test} />
-      </CardListSection>
+      <CardListSection>{/* <BlogPostCard /> */}</CardListSection>
     </PrimaryLayout>
   );
 };

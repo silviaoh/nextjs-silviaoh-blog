@@ -10,18 +10,18 @@ interface IBlogPostCardProps {
   description: string;
   author: string;
   createdAt: string;
-  src?: string;
+  thumbnailUrl?: string;
 }
 
 const BlogPostCard = (props: IBlogPostCardProps) => {
-  const { src, tag, title, description, author, createdAt } = props;
+  const { thumbnailUrl, tag, title, description, author, createdAt } = props;
   return (
     <BlogPostCardArticle>
       <section>
-        {src && (
+        {thumbnailUrl && (
           <ImageBox width="100%" height="14rem">
             <Image
-              src={src}
+              src={thumbnailUrl}
               layout="fill"
               objectFit="cover"
               objectPosition="center"

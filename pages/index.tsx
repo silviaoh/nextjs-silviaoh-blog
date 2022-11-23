@@ -4,26 +4,7 @@ import matter from 'gray-matter';
 
 import BlogListView from '../src/views/BlogListView';
 import { getDirectory, getFile } from '../src/utils/mdxUtils';
-
-interface IStaticPostListData {
-  title: string;
-  createAt: string;
-  thumbnail: string;
-  tags: string[];
-  description: string;
-  author: string;
-}
-
-interface IStaticPostList {
-  data: IStaticPostListData;
-  content: string;
-}
-
-interface IBlogList {
-  categoryName: string;
-  blogPostList: IStaticPostList[];
-  count: number;
-}
+import { IBlogList } from '../src/types';
 
 const BlogList = (props: IBlogList) => {
   return (
@@ -63,8 +44,6 @@ export const getStaticProps = async () => {
       },
     ];
   }, []);
-
-  console.log('blogPostList', blogPostList[0].files);
 
   const allBlogPostCount = blogPostList.reduce(
     (count: number, currPost: any) => count + currPost.count,

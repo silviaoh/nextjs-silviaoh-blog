@@ -1,24 +1,33 @@
 import React from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
-import sideNavBackgroundImg from '/public/images/sidenav.jpg';
-import { RainbowBorderStyle, RainbowTextStyle } from '../../styles/Animation';
-import { FlexWrapper, ImageBox, Paragraph } from '../../styles/Common';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 import {
   faSeedling,
   faFeather,
   faEllipsis,
 } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const SideNavigation = (props: any) => {
+import { RainbowBorderStyle, RainbowTextStyle } from '../../styles/Animation';
+import { FlexWrapper, ImageBox, Paragraph } from '../../styles/Common';
+import { IBlogList } from '../../types';
+
+const SideNavigation = (props: IBlogList) => {
   const { blogPostList, count } = props;
+  const router = useRouter();
+  const query = router.query;
+
+  const isAllPosts = !query.tag;
+  const isActiveCategoryPost = (activeTag: string) => query.tag === activeTag;
+
   return (
     <SideNavigationLayout>
-      <SideNavTopImage src={sideNavBackgroundImg} />
+      <SideNavTopImage />
       <ProfileImageBox width="10rem" height="10rem" borderRadius="10px">
         <Image
-          src="/images/profile.jpeg"
+          src="/images/common/profile.jpeg"
           layout="fill"
           objectFit="cover"
           objectPosition={'center'}
@@ -33,17 +42,31 @@ const SideNavigation = (props: any) => {
         </Paragraph>
       </NicknameWrapper>
       <ul>
-        <CategoryWrapper className="all">
-          <FontAwesomeIcon icon={faSeedling} width={12} /> All
+        <CategoryWrapper className={`all ${isAllPosts && 'active'}`}>
+          <FontAwesomeIcon icon={faSeedling} width={12} />
+          <Link href={{ pathname: router.pathname }} shallow>
+            All
+          </Link>
           <span>{count}</span>
           <FontAwesomeIcon icon={faEllipsis} width={10} />
         </CategoryWrapper>
-        {blogPostList?.map((post: any) => {
+        {blogPostList?.map((post, postIdx) => {
           return (
-            <React.Fragment>
-              <CategoryWrapper className="category-wrapper">
+            <Link
+              key={postIdx}
+              href={{
+                pathname: router.pathname,
+                query: { tag: post.categoryName },
+              }}
+              shallow
+            >
+              <CategoryWrapper
+                className={`category-wrapper ${
+                  isActiveCategoryPost(post.categoryName) && 'active'
+                }`}
+              >
                 <FlexWrapper gap="0.6rem">
-                  <FontAwesomeIcon icon={faFeather} width={12} />
+                  <FontAwesomeIcon icon={faFeather} width={9} />
                   <span>{post.categoryName}</span>
                 </FlexWrapper>
                 <RoundDiv>
@@ -52,7 +75,7 @@ const SideNavigation = (props: any) => {
                   </Paragraph>
                 </RoundDiv>
               </CategoryWrapper>
-            </React.Fragment>
+            </Link>
           );
         })}
       </ul>
@@ -83,9 +106,9 @@ const SideNavigationLayout = styled.aside`
   }
 `;
 
-const SideNavTopImage = styled.div<{ src: any }>`
+const SideNavTopImage = styled.div`
   height: 100px;
-  background-image: url(${({ src }) => src.src});
+  background-image: url('/images/common/sidenav.jpg');
   background-position: 57% 58%;
   background-attachment: scroll;
 `;
@@ -137,6 +160,7 @@ export const CategoryWrapper = styled.li`
 
   span {
     color: #333941;
+    text-transform: uppercase;
   }
 
   &.all {
@@ -144,11 +168,20 @@ export const CategoryWrapper = styled.li`
     font-size: 1.4rem;
     color: #fa82a8;
 
+    > a {
+      color: #fa82a8;
+      text-decoration: none;
+    }
+
     > span {
       ${RainbowTextStyle}
       animation: round 1s ease-in-out infinite, transformHue 3s infinite linear;
       animation-direction: alternate;
     }
+  }
+
+  &.all.active > a {
+    font-weight: 600;
   }
 
   &.category-wrapper {
@@ -161,13 +194,20 @@ export const CategoryWrapper = styled.li`
     font-weight: 400;
     font-size: 1.3rem;
     cursor: pointer;
-    transition: border-width 0.3s linear, background-color 0.6s linear;
+    transition: border-width 0.3s linear, background-color 0.6s linear,
+      font-weight 0.6s ease-in;
   }
 
   &.category-wrapper:hover,
-  .active {
+  &.category-wrapper.active {
+    color: #f9447d;
     border-left: 2px solid #f9447d;
     background-color: rgba(251, 224, 221, 0.4);
+
+    span {
+      color: #f9447d;
+      font-weight: 600;
+    }
   }
 
   @keyframes round {

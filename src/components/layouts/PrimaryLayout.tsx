@@ -18,10 +18,6 @@ export default PrimaryLayout;
 const RootLayoutSection = styled.section`
   display: flex;
 
-  * {
-    font-family: 'EF_Diary', sans-serif;
-  }
-
   > aside {
     flex-basis: 25rem;
   }
