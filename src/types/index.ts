@@ -4,11 +4,11 @@ export interface IStaticPostListData {
   author: string;
   title: string;
   description: string;
-  createAt: string;
+  createdAt: string;
 }
 
 export interface IFiles {
-  data: IStaticPostListData[];
+  data: IStaticPostListData;
   content: string;
 }
 

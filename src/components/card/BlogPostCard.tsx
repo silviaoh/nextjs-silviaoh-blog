@@ -3,23 +3,15 @@ import Image from 'next/image';
 import styled from 'styled-components';
 
 import { FlexMixin, ImageBox, Paragraph } from '../../styles/Common';
+import { IStaticPostListData } from '../../types';
 
-interface IBlogPostCardProps {
-  tag: string;
-  title: string;
-  description: string;
-  author: string;
-  createdAt: string;
-  thumbnailUrl?: string;
-}
-
-const BlogPostCard = (props: IBlogPostCardProps) => {
+const BlogPostCard = (props: IStaticPostListData) => {
   const { thumbnailUrl, tag, title, description, author, createdAt } = props;
   return (
     <BlogPostCardArticle>
       <section>
         {thumbnailUrl && (
-          <ImageBox width="100%" height="14rem">
+          <ImageBox width="100%" height="14rem" borderRadius="5px">
             <Image
               src={thumbnailUrl}
               layout="fill"
@@ -54,6 +46,7 @@ const BlogPostCardArticle = styled.article`
   height: 30.2rem;
   box-shadow: 3px 5px 8px 0 rgba(0, 0, 0, 0.19);
   border-radius: 5px;
+  cursor: pointer;
 `;
 
 const ContentSection = styled.section`

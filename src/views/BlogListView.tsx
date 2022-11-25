@@ -3,11 +3,12 @@ import styled from 'styled-components';
 import BlogPostCard from '../components/card/BlogPostCard';
 import PrimaryLayout from '../components/layouts/PrimaryLayout';
 import { FlexMixin } from '../styles/Common';
+import { IBlogList } from '../types';
 
-const BlogView = (props: any) => {
-  const { files } = props;
+const BlogView = (props: IBlogList) => {
+  const { blogPostList } = props;
 
-  console.log('props', files);
+  console.log('props', blogPostList);
 
   return (
     <PrimaryLayout {...props}>
@@ -15,7 +16,15 @@ const BlogView = (props: any) => {
         <TitleH1>All History</TitleH1>
         <SubTitleH3>차곡차곡 담아두는 기록</SubTitleH3>
       </MainImageSection>
-      <CardListSection>{/* <BlogPostCard /> */}</CardListSection>
+      <CardListSection>
+        {blogPostList.map((post, postIdx) => {
+          return post.files.map((file, fileIdx) => {
+            return (
+              <BlogPostCard key={`${postIdx}-${fileIdx}`} {...file.data} />
+            );
+          });
+        })}
+      </CardListSection>
     </PrimaryLayout>
   );
 };
