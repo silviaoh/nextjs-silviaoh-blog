@@ -3,7 +3,7 @@ import fs from 'fs';
 import matter from 'gray-matter';
 
 const root = process.cwd();
-const CONTENT_ROOT_DIRECTORY = 'content';
+const CONTENT_ROOT_DIRECTORY = 'articles';
 
 export const getDirectory = (type: string) => {
   try {

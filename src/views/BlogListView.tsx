@@ -8,8 +8,6 @@ import { IBlogList } from '../types';
 const BlogView = (props: IBlogList) => {
   const { blogPostList } = props;
 
-  console.log('props', blogPostList);
-
   return (
     <PrimaryLayout {...props}>
       <MainImageSection>

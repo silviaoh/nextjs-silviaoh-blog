@@ -1,0 +1,25 @@
+---
+thumbnailUrl: /images/thumbnail/test.jpeg
+tag: error
+author: Silviaoh
+title: "[Error] YAMLException: can not read a block mapping entry"
+description: YAMLException 에러 원인과 해결법
+createdAt: Dec 13, 2022
+---
+
+## Error 메시지
+
+```
+YAMLException: can not read a block mapping entry; a multiline key may not be an implicit key at line 7, column 10
+```
+## 에러 원인
+
+- mdx 파일 작성 시 title에 대괄호를 작성하였더니 발생하였다.
+
+ex) title : [HTML] HTML의 역사
+
+## 해결법
+
+- mdx 파일에서 대괄호를 사용할 일이 있다면 쌍따옴표("")로 감싸준 뒤에 내용을 적자.
+
+ex ) title: "[HTML] HTML의 역사"

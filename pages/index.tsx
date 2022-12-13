@@ -26,6 +26,7 @@ export const getStaticProps = async () => {
       const source = getFile(directory, file.replace('.mdx', ''));
 
       const { content, data } = matter(source);
+
       return [
         ...filesArray,
         {

@@ -8,31 +8,34 @@ import Link from 'next/link';
 
 const BlogPostCard = (props: IStaticPostListData) => {
   const { thumbnailUrl, tag, title, description, author, createdAt } = props;
+
   return (
     <BlogPostCardArticle>
       <Link href={{ pathname: `/blog/` }}>
         <section>
-          {thumbnailUrl && (
-            <ImageBox width="100%" height="14rem" borderRadius="5px">
-              <Image
-                src={thumbnailUrl}
-                layout="fill"
-                objectFit="cover"
-                objectPosition="center"
-                alt="thumbnail"
-              />
-            </ImageBox>
-          )}
-          <ContentSection>
-            <TagSpan>{tag}</TagSpan>
-            <TitleH1>{title}</TitleH1>
-            <Paragraph fontSize="1.3rem">{description}</Paragraph>
-          </ContentSection>
+          <section>
+            {thumbnailUrl && (
+              <ImageBox width="100%" height="14rem" borderRadius="5px">
+                <Image
+                  src={thumbnailUrl}
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="center"
+                  alt="thumbnail"
+                />
+              </ImageBox>
+            )}
+            <ContentSection>
+              <TagSpan>{tag}</TagSpan>
+              <TitleH1>{title}</TitleH1>
+              <Paragraph fontSize="1.3rem">{description}</Paragraph>
+            </ContentSection>
+          </section>
+          <FooterSection>
+            by <strong>{author}</strong> on
+            <strong>{createdAt}</strong>
+          </FooterSection>
         </section>
-        <FooterSection>
-          by <strong>{author}</strong> on
-          <strong>{createdAt}</strong>
-        </FooterSection>
       </Link>
     </BlogPostCardArticle>
   );
