@@ -69,11 +69,11 @@ const CardListSection = styled.section`
   padding: 6rem 8rem;
   justify-items: center;
   row-gap: 3rem;
-  column-gap: 2rem;
+  column-gap: 4rem;
   min-width: 50rem;
 
   @media screen and (min-width: 1350px) {
-    grid-template-columns: repeat(auto-fill, minmax(20%, auto));
+    grid-template-columns: repeat(auto-fill, minmax(30%, auto));
   }
 
   @media screen and (min-width: 1080px) and (max-width: 1350px) {

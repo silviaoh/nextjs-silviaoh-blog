@@ -2,7 +2,13 @@ import React from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 
-import { FlexMixin, ImageBox, Paragraph } from '../../styles/Common';
+import {
+  ImageBox,
+  MultiLineEllepsisStyle,
+  Paragraph,
+  FlexMixin,
+  SingleLineEllepsisMixin,
+} from '../../styles/Common';
 import { IStaticPostListData } from '../../types';
 import Link from 'next/link';
 
@@ -28,7 +34,7 @@ const BlogPostCard = (props: IStaticPostListData) => {
             <ContentSection>
               <TagSpan>{tag}</TagSpan>
               <TitleH1>{title}</TitleH1>
-              <Paragraph fontSize="1.3rem">{description}</Paragraph>
+              <DescriptionP fontSize="1.3rem">{description}</DescriptionP>
             </ContentSection>
           </section>
           <FooterSection>
@@ -49,10 +55,18 @@ const BlogPostCardArticle = styled.article`
     justifyContent: 'space-between',
   })}
   width: 100%;
-  height: 30.2rem;
+  height: 38rem;
   box-shadow: 3px 5px 8px 0 rgba(0, 0, 0, 0.19);
   border-radius: 5px;
   cursor: pointer;
+
+  > section {
+    ${FlexMixin({
+      flexDirection: 'column',
+      justifyContent: 'space-between',
+    })}
+    height:100%;
+  }
 `;
 
 const ContentSection = styled.section`
@@ -68,6 +82,7 @@ const TagSpan = styled.span`
 `;
 
 const TitleH1 = styled.h1`
+  ${SingleLineEllepsisMixin('26rem')}
   font-size: 1.6rem;
 `;
 
@@ -87,12 +102,6 @@ const FooterSection = styled.div`
   }
 `;
 
-const AuthorH1 = styled.h1`
-  width: fit-content;
-  font-weight: 600;
-`;
-
-const CreatedAtH1 = styled.h1`
-  width: fit-content;
-  font-weight: 600;
+const DescriptionP = styled(Paragraph)`
+  ${MultiLineEllepsisStyle}
 `;

@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 
+// Style
 export const ImageBoxStyle = css<{
   width: string;
   height: string;
@@ -10,10 +11,6 @@ export const ImageBoxStyle = css<{
   height: ${({ height }) => height};
   border-radius: ${({ borderRadius }) => borderRadius};
   overflow: hidden;
-`;
-
-export const ImageBox = styled.div`
-  ${ImageBoxStyle}
 `;
 
 export const ParagraphStyle = css<{
@@ -32,10 +29,6 @@ export const ParagraphStyle = css<{
   white-space: pre-wrap;
 `;
 
-export const Paragraph = styled.p`
-  ${ParagraphStyle}
-`;
-
 export const FlexWrapperStyle = css<{
   flexDirection?: string;
   justifyContent?: string;
@@ -51,6 +44,19 @@ export const FlexWrapperStyle = css<{
   margin: ${({ margin }) => margin};
 `;
 
+export const MultiLineEllepsisStyle = () => css`
+  display: -webkit-box;
+  white-space: normal;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+  overflow: hidden;
+  word-wrap: break-word;
+  text-align: left;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+`;
+
+// Mixin
 export const FlexMixin = ({
   flexDirection,
   justifyContent,
@@ -73,6 +79,23 @@ export const FlexMixin = ({
   gap: ${gap};
   margin: ${margin};
   flex-wrap: ${flexWrap};
+`;
+
+export const SingleLineEllepsisMixin = (width: string) => css`
+  display: inline-block;
+  width: ${width};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+// Components
+export const ImageBox = styled.div`
+  ${ImageBoxStyle}
+`;
+
+export const Paragraph = styled.p`
+  ${ParagraphStyle}
 `;
 
 export const FlexWrapper = styled.div`
