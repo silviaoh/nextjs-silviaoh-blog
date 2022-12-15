@@ -1,6 +1,9 @@
 export interface IStaticPostListData {
   thumbnailUrl: string;
-  tag: string;
+  tag: {
+    name: string;
+    color: string;
+  };
   author: string;
   title: string;
   description: string;

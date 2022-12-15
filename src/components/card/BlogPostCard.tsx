@@ -32,12 +32,12 @@ const BlogPostCard = (props: IStaticPostListData) => {
               </ImageBox>
             )}
             <ContentSection>
-              <TagSpan>{tag}</TagSpan>
+              <TagSpan color={tag.color || ''}>{tag.name}</TagSpan>
               <TitleH1>{title}</TitleH1>
               <DescriptionP fontSize="1.3rem">{description}</DescriptionP>
             </ContentSection>
           </section>
-          <FooterSection>
+          <FooterSection color={tag.color || ''}>
             by <strong>{author}</strong> on
             <strong>{createdAt}</strong>
           </FooterSection>
@@ -78,7 +78,13 @@ const ContentSection = styled.section`
 `;
 
 const TagSpan = styled.span`
-  font-size: 1.4rem;
+  width: fit-content;
+  font-size: 1rem;
+  font-weight: 400;
+  background-color: ${({ color }) => color};
+  border-radius: 10px;
+  padding: 0.4rem 1rem;
+  color: white;
 `;
 
 const TitleH1 = styled.h1`
@@ -98,7 +104,7 @@ const FooterSection = styled.div`
   }
 
   strong:last-child {
-    color: red;
+    color: ${({ color }) => color};
   }
 `;
 
