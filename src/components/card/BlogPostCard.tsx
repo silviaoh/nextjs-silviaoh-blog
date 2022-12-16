@@ -16,7 +16,7 @@ const BlogPostCard = (props: IStaticPostListData) => {
   const { thumbnailUrl, tag, title, description, author, createdAt } = props;
 
   return (
-    <BlogPostCardArticle>
+    <BlogPostCardArticle color={tag.color || ''}>
       <Link href={{ pathname: `/blog/` }}>
         <section>
           <section>
@@ -54,11 +54,14 @@ const BlogPostCardArticle = styled.article`
     flexDirection: 'column',
     justifyContent: 'space-between',
   })}
+  position: relative;
+  top: 0px;
   width: 100%;
   height: 38rem;
-  box-shadow: 3px 5px 8px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   cursor: pointer;
+  transition: all 0.2s ease-out;
 
   > section {
     ${FlexMixin({
@@ -66,6 +69,11 @@ const BlogPostCardArticle = styled.article`
       justifyContent: 'space-between',
     })}
     height:100%;
+  }
+
+  &:hover {
+    box-shadow: 0px 4px 6px rgba(38, 38, 38, 0.2);
+    top: -4px;
   }
 `;
 
