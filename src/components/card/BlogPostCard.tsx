@@ -104,7 +104,7 @@ const FooterSection = styled.div`
   ${FlexMixin({ gap: '0.6rem' })}
   padding: 2rem;
   font-size: 1.3rem;
-  border-top: 1px solid ${({ theme }) => theme.colors.darkGray};
+  border-top: 1px solid ${({ theme }) => theme.colors.gray};
 
   strong:first-child {
     font-weight: 600;
