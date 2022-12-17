@@ -32,5 +32,6 @@ const Main = styled.main`
   position: relative;
   height: 100vh;
   min-height: 100vh;
+  min-width: 25rem;
   overflow: auto;
 `;

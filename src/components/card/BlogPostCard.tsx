@@ -56,7 +56,8 @@ const BlogPostCardArticle = styled.article`
   })}
   position: relative;
   top: 0px;
-  width: 100%;
+  min-width: 31.2rem;
+  max-width: 31.2rem;
   height: 38rem;
   box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.1);
   border-radius: 5px;
@@ -74,6 +75,10 @@ const BlogPostCardArticle = styled.article`
   &:hover {
     box-shadow: 0px 4px 6px rgba(38, 38, 38, 0.2);
     top: -4px;
+  }
+
+  @media screen and (max-width: 1045px) {
+    max-width: 100%;
   }
 `;
 
