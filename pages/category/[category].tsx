@@ -1,27 +1,50 @@
-import React from 'react';
-import Head from 'next/head';
 import matter from 'gray-matter';
+import { GetStaticProps } from 'next';
+import Head from 'next/head';
+import React from 'react';
+import PrimaryLayout from '../../src/components/layouts/PrimaryLayout';
+import { IBlogList } from '../../src/types';
+import { getDirectory, getFile } from '../../src/utils/mdxUtils';
 
-import PrimaryLayout from '../src/components/layouts/PrimaryLayout';
-import BlogListView from '../src/views/BlogListView';
-import { getDirectory, getFile } from '../src/utils/mdxUtils';
-import { IBlogList } from '../src/types';
+import CategoryView from '../../src/views/CategoryView';
 
-const BlogList = (props: IBlogList) => {
+const Category = (props: IBlogList) => {
   return (
     <React.Fragment>
       <Head>
-        <title>BLOG</title>
+        <title>BLOG-Category</title>
       </Head>
       <PrimaryLayout {...props}>
-        <BlogListView {...props} />
+        <CategoryView {...props} />
       </PrimaryLayout>
     </React.Fragment>
   );
 };
-export default BlogList;
 
-export const getStaticProps = async () => {
+export default Category;
+
+export const getStaticPaths = async () => {
+  const directories = getDirectory('') || [];
+
+  const paths = directories.reduce((array: any, directory) => {
+    return [
+      ...array,
+      {
+        params: {
+          category: directory.toString(),
+        },
+      },
+    ];
+  }, []);
+  console.log(paths);
+
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const directories = getDirectory('') || [];
 
   const blogPostList = directories.reduce((array: any, directory) => {

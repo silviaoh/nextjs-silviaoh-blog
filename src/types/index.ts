@@ -25,3 +25,8 @@ export interface IBlogList {
   blogPostList: IStaticPostList[];
   count: number;
 }
+
+export interface IBlogViewProps extends IBlogList {
+  mainTitle: string;
+  subTitle: string;
+}

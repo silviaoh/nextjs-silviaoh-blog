@@ -19,8 +19,9 @@ const SideNavigation = (props: IBlogList) => {
   const router = useRouter();
   const query = router.query;
 
-  const isAllPosts = !query.tag;
-  const isActiveCategoryPost = (activeTag: string) => query.tag === activeTag;
+  const isAllPosts = !query.category;
+  const isActiveCategoryPost = (activeCategory: string) =>
+    query.category === activeCategory;
 
   return (
     <SideNavigationLayout>
@@ -44,9 +45,7 @@ const SideNavigation = (props: IBlogList) => {
       <ul>
         <CategoryWrapper className={`all ${isAllPosts && 'active'}`}>
           <FontAwesomeIcon icon={faSeedling} width={12} />
-          <Link href={{ pathname: router.pathname }} shallow>
-            All
-          </Link>
+          <Link href={{ pathname: '/' }}>All</Link>
           <span>{count}</span>
           <FontAwesomeIcon icon={faEllipsis} width={10} />
         </CategoryWrapper>
@@ -55,8 +54,7 @@ const SideNavigation = (props: IBlogList) => {
             <Link
               key={postIdx}
               href={{
-                pathname: router.pathname,
-                query: { tag: post.categoryName },
+                pathname: `/category/${post.categoryName}`,
               }}
               shallow
             >

@@ -1,30 +1,32 @@
 import React from 'react';
 import styled from 'styled-components';
-import BlogPostCard from '../components/card/BlogPostCard';
-import PrimaryBlogListLayout from '../components/layouts/PrimaryBlogListLayout';
-import { FlexMixin } from '../styles/Common';
-import { IBlogList } from '../types';
 
-const BlogView = (props: IBlogList) => {
-  const { blogPostList } = props;
+import { FlexMixin } from '../../styles/Common';
+
+interface IPrimaryBlogListLayoutProps {
+  mainTitle: string;
+  children: React.ReactNode;
+  mainImageUrl?: string;
+  subTitle?: string;
+}
+
+const PrimaryBlogListLayout = (props: IPrimaryBlogListLayoutProps) => {
+  const { mainTitle, children, mainImageUrl = '', subTitle = '' } = props;
 
   return (
-    <PrimaryBlogListLayout
-      mainTitle="All History"
-      subTitle="차곡차곡 쌓여가는 기록"
-    >
-      {blogPostList.map((post, postIdx) => {
-        return post.files.map((file, fileIdx) => {
-          return <BlogPostCard key={`${postIdx}-${fileIdx}`} {...file.data} />;
-        });
-      })}
-    </PrimaryBlogListLayout>
+    <React.Fragment>
+      <MainImageSection mainImageUrl={mainImageUrl}>
+        <TitleH1>{mainTitle}</TitleH1>
+        {subTitle && <SubTitleH3>{subTitle}</SubTitleH3>}
+      </MainImageSection>
+      <CardListSection>{children}</CardListSection>
+    </React.Fragment>
   );
 };
 
-export default BlogView;
+export default PrimaryBlogListLayout;
 
-const MainImageSection = styled.section`
+const MainImageSection = styled.section<{ mainImageUrl: string }>`
   ${FlexMixin({
     flexDirection: 'column',
     justifyContent: 'center',
@@ -33,7 +35,8 @@ const MainImageSection = styled.section`
   })}
   position: relative;
   height: 33rem;
-  background-image: url('/history.jpg');
+  background-image: ${({ mainImageUrl }) =>
+    `url(${mainImageUrl ? mainImageUrl : '/history.jpg'})`};
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
