@@ -9,10 +9,10 @@ import {
   FlexMixin,
   SingleLineEllepsisMixin,
 } from '../../styles/Common';
-import { IStaticPostListData } from '../../types';
+import { IBlogMetaData } from '../../types';
 import Link from 'next/link';
 
-const BlogPostCard = (props: IStaticPostListData) => {
+const BlogPostCard = (props: IBlogMetaData) => {
   const { thumbnailUrl, tag, title, description, author, createdAt } = props;
 
   return (

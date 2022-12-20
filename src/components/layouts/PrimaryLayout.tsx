@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import SideNavigation from '../common/SideNavigation';
 
 const PrimaryLayout = (props: any) => {
-  const { children, blogPostList, count } = props;
+  const { children, blogs, count } = props;
 
   return (
     <RootLayoutSection>
-      <SideNavigation blogPostList={blogPostList} count={count} />
+      <SideNavigation blogs={blogs} count={count} />
       <Main>{children}</Main>
     </RootLayoutSection>
   );

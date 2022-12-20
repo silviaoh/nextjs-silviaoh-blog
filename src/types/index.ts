@@ -1,4 +1,4 @@
-export interface IStaticPostListData {
+export interface IBlogMetaData {
   thumbnailUrl: string;
   tag: {
     name: string;
@@ -10,23 +10,23 @@ export interface IStaticPostListData {
   createdAt: string;
 }
 
-export interface IFiles {
-  data: IStaticPostListData;
+export interface IFilesInCategory {
+  metaData: IBlogMetaData;
   content: string;
 }
 
-export interface IStaticPostList {
+export interface IBlogs {
   categoryName: string;
-  files: IFiles[];
+  filesInCategory: IFilesInCategory[];
   count: number;
 }
 
-export interface IBlogList {
-  blogPostList: IStaticPostList[];
+export interface IBlogListProps {
+  blogs: IBlogs[];
   count: number;
 }
 
-export interface IBlogViewProps extends IBlogList {
+export interface IBlogViewProps extends IBlogListProps {
   mainTitle: string;
   subTitle: string;
 }

@@ -12,13 +12,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { RainbowBorderStyle, RainbowTextStyle } from '../../styles/Animation';
 import { FlexWrapper, ImageBox, Paragraph } from '../../styles/Common';
-import { IBlogList } from '../../types';
+import { IBlogListProps } from '../../types';
 
-const SideNavigation = (props: IBlogList) => {
-  const { blogPostList, count } = props;
+const SideNavigation = (props: IBlogListProps) => {
+  const { blogs, count } = props;
   const router = useRouter();
   const query = router.query;
-
+  console.log(props);
   const isAllPosts = !query.category;
   const isActiveCategoryPost = (activeCategory: string) =>
     query.category === activeCategory;
@@ -49,7 +49,7 @@ const SideNavigation = (props: IBlogList) => {
           <span>{count}</span>
           <FontAwesomeIcon icon={faEllipsis} width={10} />
         </CategoryWrapper>
-        {blogPostList?.map((post, postIdx) => {
+        {blogs?.map((post, postIdx) => {
           return (
             <Link
               key={postIdx}

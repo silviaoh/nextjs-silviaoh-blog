@@ -1,14 +1,12 @@
-import matter from 'gray-matter';
-import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import React from 'react';
 import PrimaryLayout from '../../src/components/layouts/PrimaryLayout';
-import { IBlogList } from '../../src/types';
-import { getDirectory, getFile } from '../../src/utils/mdxUtils';
+import { IBlogListProps } from '../../src/types';
+import { getBlogs, getPaths } from '../../src/utils/blogUtils';
 
 import CategoryView from '../../src/views/CategoryView';
 
-const Category = (props: IBlogList) => {
+const Category = (props: IBlogListProps) => {
   return (
     <React.Fragment>
       <Head>
@@ -24,19 +22,7 @@ const Category = (props: IBlogList) => {
 export default Category;
 
 export const getStaticPaths = async () => {
-  const directories = getDirectory('') || [];
-
-  const paths = directories.reduce((array: any, directory) => {
-    return [
-      ...array,
-      {
-        params: {
-          category: directory.toString(),
-        },
-      },
-    ];
-  }, []);
-  console.log(paths);
+  const paths = getPaths();
 
   return {
     paths,
@@ -44,37 +30,12 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const directories = getDirectory('') || [];
-
-  const blogPostList = directories.reduce((array: any, directory) => {
-    const files = getDirectory(directory)?.reduce((filesArray: any, file) => {
-      const source = getFile(directory, file.replace('.mdx', ''));
-
-      const { content, data } = matter(source);
-
-      return [
-        ...filesArray,
-        {
-          data,
-          content,
-        },
-      ];
-    }, []);
-
-    return [
-      ...array,
-      {
-        categoryName: directory,
-        files,
-        count: files.length,
-      },
-    ];
-  }, []);
-
-  const allBlogPostCount = blogPostList.reduce(
+export const getStaticProps = async () => {
+  const blogs = getBlogs();
+  const count = blogs.reduce(
     (count: number, currPost: any) => count + currPost.count,
     0,
   );
-  return { props: { count: allBlogPostCount, blogPostList } };
+
+  return { props: { count, blogs } };
 };
