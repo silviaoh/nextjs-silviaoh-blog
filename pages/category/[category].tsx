@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import React from 'react';
+
 import PrimaryLayout from '../../src/components/layouts/PrimaryLayout';
 import { IBlogListProps } from '../../src/types';
 import { getBlogs, getPaths } from '../../src/utils/blogUtils';
