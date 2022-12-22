@@ -18,7 +18,7 @@ const SideNavigation = (props: IBlogListProps) => {
   const { blogs, count } = props;
   const router = useRouter();
   const query = router.query;
-  console.log(props);
+
   const isAllPosts = !query.category;
   const isActiveCategoryPost = (activeCategory: string) =>
     query.category === activeCategory;
