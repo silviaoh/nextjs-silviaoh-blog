@@ -14,18 +14,9 @@ import { RainbowBorderStyle, RainbowTextStyle } from '../../styles/Animation';
 import { FlexWrapper, ImageBox, Paragraph } from '../../styles/Common';
 import { IBlogListProps } from '../../types';
 
-const SideNavigation = (props: IBlogListProps) => {
-  const { blogs, count } = props;
-  const router = useRouter();
-  const query = router.query;
-
-  const isAllPosts = !query.category;
-  const isActiveCategoryPost = (activeCategory: string) =>
-    query.category === activeCategory;
-
+const SideNavProfile = () => {
   return (
-    <SideNavigationLayout>
-      <SideNavTopImage />
+    <React.Fragment>
       <ProfileImageBox width="10rem" height="10rem" borderRadius="10px">
         <Image
           src="/images/common/profile.jpeg"
@@ -42,37 +33,51 @@ const SideNavigation = (props: IBlogListProps) => {
           🪴 성장하는 즐거움!
         </Paragraph>
       </NicknameWrapper>
+    </React.Fragment>
+  );
+};
+
+const SideNavigation = (props: IBlogListProps) => {
+  const { blogs, count } = props;
+  const router = useRouter();
+  const query = router.query;
+
+  const isAllPosts = !query.category;
+  const isActiveCategoryPost = (activeCategory: string) =>
+    query.category === activeCategory;
+
+  return (
+    <SideNavigationLayout>
+      <SideNavTopImage />
+      <SideNavProfile />
       <ul>
-        <CategoryWrapper className={`all ${isAllPosts && 'active'}`}>
+        <CategoryItem className={`category-all ${isAllPosts && 'active'}`}>
           <FontAwesomeIcon icon={faSeedling} width={12} />
           <Link href={{ pathname: '/' }}>All</Link>
           <span>{count}</span>
           <FontAwesomeIcon icon={faEllipsis} width={10} />
-        </CategoryWrapper>
+        </CategoryItem>
         {blogs?.map((post, postIdx) => {
+          const pathname = `/category/${post.categoryName}`;
+          const className = {
+            categoryItem: `category-item ${
+              isActiveCategoryPost(post.categoryName) && 'active'
+            }`,
+          };
+
           return (
-            <Link
-              key={postIdx}
-              href={{
-                pathname: `/category/${post.categoryName}`,
-              }}
-              shallow
-            >
-              <CategoryWrapper
-                className={`category-wrapper ${
-                  isActiveCategoryPost(post.categoryName) && 'active'
-                }`}
-              >
+            <Link key={postIdx} href={{ pathname }}>
+              <CategoryItem className={className.categoryItem}>
                 <FlexWrapper gap="0.6rem">
                   <FontAwesomeIcon icon={faFeather} width={9} />
                   <span>{post.categoryName}</span>
                 </FlexWrapper>
-                <RoundDiv>
+                <GradientCircleBox>
                   <Paragraph fontSize="1rem" fontWeight={500}>
                     {post.count}
                   </Paragraph>
-                </RoundDiv>
-              </CategoryWrapper>
+                </GradientCircleBox>
+              </CategoryItem>
             </Link>
           );
         })}
@@ -119,7 +124,7 @@ const ProfileImageBox = styled(ImageBox)`
   box-shadow: 1px 4px 18px 0px rgba(58, 59, 59, 0.57);
 `;
 
-const RoundDiv = styled.div`
+const GradientCircleBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -147,7 +152,7 @@ const NicknameWrapper = styled.div`
   }
 `;
 
-export const CategoryWrapper = styled.li`
+export const CategoryItem = styled.li`
   display: flex;
   gap: 0.6rem;
   align-items: center;
@@ -161,7 +166,7 @@ export const CategoryWrapper = styled.li`
     text-transform: uppercase;
   }
 
-  &.all {
+  &.category-all {
     font-weight: 300;
     font-size: 1.4rem;
     color: #fa82a8;
@@ -182,7 +187,7 @@ export const CategoryWrapper = styled.li`
     font-weight: 600;
   }
 
-  &.category-wrapper {
+  &.category-item {
     justify-content: space-between;
     border-left: 2px solid transparent;
     border-top-right-radius: 6px;
@@ -196,8 +201,8 @@ export const CategoryWrapper = styled.li`
       font-weight 0.6s ease-in;
   }
 
-  &.category-wrapper:hover,
-  &.category-wrapper.active {
+  &.category-item:hover,
+  &.category-item.active {
     color: #f9447d;
     border-left: 2px solid #f9447d;
     background-color: rgba(251, 224, 221, 0.4);
