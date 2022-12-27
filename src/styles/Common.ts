@@ -29,7 +29,7 @@ export const ParagraphStyle = css<{
   white-space: pre-wrap;
 `;
 
-export const FlexWrapperStyle = css<{
+export const FlexBoxStyle = css<{
   flexDirection?: string;
   justifyContent?: string;
   alignItems?: string;
@@ -98,6 +98,6 @@ export const Paragraph = styled.p`
   ${ParagraphStyle}
 `;
 
-export const FlexWrapper = styled.div`
-  ${FlexWrapperStyle}
+export const FlexBox = styled.div`
+  ${FlexBoxStyle}
 `;

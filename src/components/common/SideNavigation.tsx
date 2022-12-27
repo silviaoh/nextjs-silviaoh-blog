@@ -11,7 +11,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { RainbowBorderStyle, RainbowTextStyle } from '../../styles/Animation';
-import { FlexWrapper, ImageBox, Paragraph } from '../../styles/Common';
+import { FlexBox, ImageBox, Paragraph } from '../../styles/Common';
 import { IBlogListProps } from '../../types';
 
 const SideNavProfile = () => {
@@ -25,14 +25,14 @@ const SideNavProfile = () => {
           objectPosition={'center'}
         />
       </ProfileImageBox>
-      <NicknameWrapper>
+      <NicknameBox>
         <Paragraph fontSize="1.6rem" fontWeight={500}>
           silvia_oh_dev_story
         </Paragraph>
         <Paragraph fontSize="1.2rem" fontWeight={300}>
           🪴 성장하는 즐거움!
         </Paragraph>
-      </NicknameWrapper>
+      </NicknameBox>
     </React.Fragment>
   );
 };
@@ -57,7 +57,7 @@ const SideNavigation = (props: IBlogListProps) => {
           <span>{count}</span>
           <FontAwesomeIcon icon={faEllipsis} width={10} />
         </CategoryItem>
-        {blogs?.map((post, postIdx) => {
+        {blogs.map((post, postIdx) => {
           const pathname = `/category/${post.categoryName}`;
           const className = {
             categoryItem: `category-item ${
@@ -68,10 +68,10 @@ const SideNavigation = (props: IBlogListProps) => {
           return (
             <Link key={postIdx} href={{ pathname }}>
               <CategoryItem className={className.categoryItem}>
-                <FlexWrapper gap="0.6rem">
+                <FlexBox gap="0.6rem">
                   <FontAwesomeIcon icon={faFeather} width={9} />
                   <span>{post.categoryName}</span>
-                </FlexWrapper>
+                </FlexBox>
                 <GradientCircleBox>
                   <Paragraph fontSize="1rem" fontWeight={500}>
                     {post.count}
@@ -140,7 +140,7 @@ const GradientCircleBox = styled.div`
   }
 `;
 
-const NicknameWrapper = styled.div`
+const NicknameBox = styled.div`
   margin-top: 8rem;
 
   > p {

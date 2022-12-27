@@ -4,20 +4,17 @@ import { ImageBox } from '../../styles/Common';
 import test from '../public/images/test.jpeg';
 import Image from 'next/image';
 
-type Props = {};
-
-const Footer = (props: Props) => {
+const Footer = () => {
   return (
-    <Frame>
+    <RootFooter>
       <hr />
-
-      <LinkButtonWrapper>
+      <LinkButtonBox>
         <ImageBox width="1.8rem" height="1.8rem" borderRadius="0.9rem">
           <Image
             src={test}
             layout="fill"
             objectFit="cover"
-            objectPosition={'center'}
+            objectPosition="center"
           />
         </ImageBox>
         <ImageBox width="1.8rem" height="1.8rem" borderRadius="0.9rem">
@@ -25,17 +22,17 @@ const Footer = (props: Props) => {
             src={test}
             layout="fill"
             objectFit="cover"
-            objectPosition={'center'}
+            objectPosition="center"
           />
         </ImageBox>
-      </LinkButtonWrapper>
-    </Frame>
+      </LinkButtonBox>
+    </RootFooter>
   );
 };
 
 export default Footer;
 
-const Frame = styled.footer`
+const RootFooter = styled.footer`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -49,7 +46,7 @@ const Frame = styled.footer`
   }
 `;
 
-const LinkButtonWrapper = styled.div`
+const LinkButtonBox = styled.div`
   display: flex;
   gap: 2rem;
   align-items: center;
