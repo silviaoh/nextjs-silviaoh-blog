@@ -14,12 +14,15 @@ const CategoryView = (props: IBlogListProps) => {
     blogs.find((post) => post.categoryName === query.category)?.categoryName ||
     '';
 
+  const isCategoryBlogsList = (mappedCategoryName: string) =>
+    mappedCategoryName === query.category;
+
   return (
     <PrimaryBlogListLayout mainTitle={mainTitle}>
       {blogs.map((post, postIdx) => {
         return post.filesInCategory.map((file, fileIdx) => {
           return (
-            post.categoryName === query.category && (
+            isCategoryBlogsList(post.categoryName) && (
               <BlogPostCard key={`${postIdx}-${fileIdx}`} {...file.metaData} />
             )
           );
