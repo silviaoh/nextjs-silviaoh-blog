@@ -3,7 +3,7 @@ import BlogPostCard from '../components/card/BlogPostCard';
 import PrimaryBlogListLayout from '../components/layouts/PrimaryBlogListLayout';
 import { IBlogListProps } from '../types';
 
-const BlogView = (props: IBlogListProps) => {
+const BlogListView = (props: IBlogListProps) => {
   const { blogs } = props;
 
   return (
@@ -22,4 +22,4 @@ const BlogView = (props: IBlogListProps) => {
   );
 };
 
-export default BlogView;
+export default BlogListView;
