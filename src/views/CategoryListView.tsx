@@ -4,7 +4,7 @@ import BlogPostCard from '../components/card/BlogPostCard';
 import PrimaryBlogListLayout from '../components/layouts/PrimaryBlogListLayout';
 import { IBlogListProps } from '../types';
 
-const CategoryView = (props: IBlogListProps) => {
+const CategoryListView = (props: IBlogListProps) => {
   const { blogs } = props;
 
   const router = useRouter();
@@ -32,4 +32,4 @@ const CategoryView = (props: IBlogListProps) => {
   );
 };
 
-export default CategoryView;
+export default CategoryListView;
