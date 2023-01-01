@@ -5,7 +5,7 @@ import PrimaryLayout from '../../src/components/layouts/PrimaryLayout';
 import { IBlogListProps } from '../../src/types';
 import { getBlogs, getPaths } from '../../src/utils/blogUtils';
 
-import CategoryView from '../../src/views/CategoryView';
+import CategoryListView from '../../src/views/CategoryListView';
 
 const Category = (props: IBlogListProps) => {
   return (
@@ -14,7 +14,7 @@ const Category = (props: IBlogListProps) => {
         <title>BLOG-Category</title>
       </Head>
       <PrimaryLayout {...props}>
-        <CategoryView {...props} />
+        <CategoryListView {...props} />
       </PrimaryLayout>
     </React.Fragment>
   );
