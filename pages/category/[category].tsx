@@ -24,7 +24,7 @@ export default Category;
 
 export const getStaticPaths = async () => {
   const paths = getPaths();
-
+  console.log('paths', paths);
   return {
     paths,
     fallback: false,

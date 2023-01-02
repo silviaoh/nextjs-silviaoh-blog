@@ -1,13 +1,13 @@
 import React from 'react';
 import BlogPostCard from '../components/card/BlogPostCard';
-import PrimaryBlogListLayout from '../components/layouts/PrimaryBlogListLayout';
+import PrimaryMainLayout from '../components/layouts/PrimaryMainLayout';
 import { IBlogListProps } from '../types';
 
 const BlogListView = (props: IBlogListProps) => {
   const { blogs } = props;
 
   return (
-    <PrimaryBlogListLayout
+    <PrimaryMainLayout
       mainTitle="All History"
       subTitle="차곡차곡 쌓여가는 기록"
     >
@@ -18,7 +18,7 @@ const BlogListView = (props: IBlogListProps) => {
           );
         });
       })}
-    </PrimaryBlogListLayout>
+    </PrimaryMainLayout>
   );
 };
 

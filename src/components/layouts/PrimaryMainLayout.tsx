@@ -3,28 +3,40 @@ import styled from 'styled-components';
 
 import { FlexMixin } from '../../styles/Common';
 
-interface IPrimaryBlogListLayoutProps {
+interface IPrimaryMainLayoutProps {
   mainTitle: string;
   children: React.ReactNode;
   mainImageUrl?: string;
-  subTitle?: string;
+  subTitle?: string | React.ReactElement;
+  category?: string;
+  tagColor?: string;
 }
 
-const PrimaryBlogListLayout = (props: IPrimaryBlogListLayoutProps) => {
-  const { mainTitle, children, mainImageUrl = '', subTitle = '' } = props;
+const PrimaryMainLayout = (props: IPrimaryMainLayoutProps) => {
+  const {
+    mainTitle,
+    children,
+    mainImageUrl = '',
+    subTitle = '',
+    category = '',
+    tagColor = '',
+  } = props;
 
   return (
     <React.Fragment>
       <MainImageSection mainImageUrl={mainImageUrl}>
         <TitleH1>{mainTitle}</TitleH1>
         {subTitle && <SubTitleH3>{subTitle}</SubTitleH3>}
+        {category && (
+          <CategorySpan tagColor={tagColor}>{category}</CategorySpan>
+        )}
       </MainImageSection>
       <CardListSection>{children}</CardListSection>
     </React.Fragment>
   );
 };
 
-export default PrimaryBlogListLayout;
+export default PrimaryMainLayout;
 
 const MainImageSection = styled.section<{ mainImageUrl: string }>`
   ${FlexMixin({
@@ -36,7 +48,7 @@ const MainImageSection = styled.section<{ mainImageUrl: string }>`
   position: relative;
   height: 33rem;
   background-image: ${({ mainImageUrl }) =>
-    `url(${mainImageUrl ? mainImageUrl : '/history.jpg'})`};
+    `url(${mainImageUrl ? mainImageUrl : '/images/common/history.jpg'})`};
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -51,9 +63,13 @@ const MainImageSection = styled.section<{ mainImageUrl: string }>`
 `;
 
 const TitleH1 = styled.h1`
+  padding: 0 2rem;
   font-size: 5rem;
   color: ${({ theme }) => theme.colors.white};
+  white-space: pre-line;
+  min-height: 12rem;
   text-transform: uppercase;
+  text-align: center;
   z-index: 1;
 `;
 
@@ -61,6 +77,12 @@ const SubTitleH3 = styled.h3`
   font-size: 1.6rem;
   color: ${({ theme }) => theme.colors.white};
   z-index: 1;
+`;
+
+const CategorySpan = styled.span<{ tagColor?: string }>`
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: ${({ tagColor }) => tagColor};
 `;
 
 const CardListSection = styled.section`

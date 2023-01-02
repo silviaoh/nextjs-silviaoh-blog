@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { IPrimaryLayoutProps } from '../../types';
 import SideNavigation from '../common/SideNavigation';
 
-const PrimaryLayout = (props: any) => {
+const PrimaryLayout = (props: IPrimaryLayoutProps) => {
   const { children, blogs, count } = props;
 
   return (

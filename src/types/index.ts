@@ -1,4 +1,7 @@
+import React from 'react';
+
 export interface IBlogMetaData {
+  id: string;
   thumbnailUrl: string;
   tag: {
     name: string;
@@ -26,7 +29,19 @@ export interface IBlogListProps {
   count: number;
 }
 
+export interface IPrimaryLayoutProps extends IBlogListProps {
+  children: React.ReactNode;
+}
+
 export interface IBlogViewProps extends IBlogListProps {
   mainTitle: string;
   subTitle: string;
+}
+
+export interface IBlogPostPaths {
+  params: { slug: string };
+}
+
+export interface IBlogPostProps extends IBlogListProps {
+  blogPost: IFilesInCategory;
 }

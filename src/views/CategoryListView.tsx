@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 import BlogPostCard from '../components/card/BlogPostCard';
-import PrimaryBlogListLayout from '../components/layouts/PrimaryBlogListLayout';
+import PrimaryMainLayout from '../components/layouts/PrimaryMainLayout';
 import { IBlogListProps } from '../types';
 
 const CategoryListView = (props: IBlogListProps) => {
@@ -18,7 +18,7 @@ const CategoryListView = (props: IBlogListProps) => {
     mappedCategoryName === query.category;
 
   return (
-    <PrimaryBlogListLayout mainTitle={mainTitle}>
+    <PrimaryMainLayout mainTitle={mainTitle}>
       {blogs.map((post, postIdx) => {
         return post.filesInCategory.map((file, fileIdx) => {
           return (
@@ -28,7 +28,7 @@ const CategoryListView = (props: IBlogListProps) => {
           );
         });
       })}
-    </PrimaryBlogListLayout>
+    </PrimaryMainLayout>
   );
 };
 

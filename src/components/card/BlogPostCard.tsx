@@ -13,11 +13,12 @@ import { IBlogMetaData } from '../../types';
 import Link from 'next/link';
 
 const BlogPostCard = (props: IBlogMetaData) => {
-  const { thumbnailUrl, tag, title, description, author, createdAt } = props;
+  const { id, thumbnailUrl, tag, title, description, author, createdAt } =
+    props;
 
   return (
     <BlogPostCardArticle color={tag.color || ''}>
-      <Link href={{ pathname: `/blog/` }}>
+      <Link href={{ pathname: `/blog/${id}` }}>
         <section>
           <section>
             {thumbnailUrl && (
