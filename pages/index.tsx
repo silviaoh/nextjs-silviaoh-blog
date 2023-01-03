@@ -2,23 +2,23 @@ import React from 'react';
 import Head from 'next/head';
 
 import PrimaryLayout from '../src/components/layouts/PrimaryLayout';
-import BlogListView from '../src/views/BlogListView';
+import ListOfBlogPostsView from '../src/views/ListOfBlogPostsView';
 import { IBlogListProps } from '../src/types';
 import { getBlogs } from '../src/utils/blogUtils';
 
-const BlogList = (props: IBlogListProps) => {
+const ListOfBlogPosts = (props: IBlogListProps) => {
   return (
     <React.Fragment>
       <Head>
         <title>BLOG</title>
       </Head>
       <PrimaryLayout {...props}>
-        <BlogListView {...props} />
+        <ListOfBlogPostsView {...props} />
       </PrimaryLayout>
     </React.Fragment>
   );
 };
-export default BlogList;
+export default ListOfBlogPosts;
 
 export const getStaticProps = async () => {
   const blogs = getBlogs();

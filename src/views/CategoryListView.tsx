@@ -11,11 +11,11 @@ const CategoryListView = (props: IBlogListProps) => {
   const query = router.query;
 
   const mainTitle =
-    blogs.find((post) => post.categoryName === query.category)?.categoryName ||
-    '';
+    blogs.find((post) => post.categoryName === query.categoryName)
+      ?.categoryName || '';
 
   const isCategoryBlogsList = (mappedCategoryName: string) =>
-    mappedCategoryName === query.category;
+    mappedCategoryName === query.categoryName;
 
   return (
     <PrimaryMainLayout mainTitle={mainTitle}>

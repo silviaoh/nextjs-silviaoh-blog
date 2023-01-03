@@ -8,7 +8,7 @@ interface IPrimaryMainLayoutProps {
   children: React.ReactNode;
   mainImageUrl?: string;
   subTitle?: string | React.ReactElement;
-  category?: string;
+  categoryName?: string;
   tagColor?: string;
 }
 
@@ -18,7 +18,7 @@ const PrimaryMainLayout = (props: IPrimaryMainLayoutProps) => {
     children,
     mainImageUrl = '',
     subTitle = '',
-    category = '',
+    categoryName = '',
     tagColor = '',
   } = props;
 
@@ -27,8 +27,8 @@ const PrimaryMainLayout = (props: IPrimaryMainLayoutProps) => {
       <MainImageSection mainImageUrl={mainImageUrl}>
         <TitleH1>{mainTitle}</TitleH1>
         {subTitle && <SubTitleH3>{subTitle}</SubTitleH3>}
-        {category && (
-          <CategorySpan tagColor={tagColor}>{category}</CategorySpan>
+        {categoryName && (
+          <CategorySpan tagColor={tagColor}>{categoryName}</CategorySpan>
         )}
       </MainImageSection>
       <CardListSection>{children}</CardListSection>

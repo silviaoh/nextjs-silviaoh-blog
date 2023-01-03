@@ -10,7 +10,7 @@ export const getPaths = () => {
       ...blogsArr,
       {
         params: {
-          category: directory.toString(),
+          categoryName: directory.toString(),
         },
       },
     ];

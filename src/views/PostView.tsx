@@ -16,7 +16,7 @@ const PostView = (props: IFilesInCategory) => {
           <strong>{metaData.createdAt}</strong>
         </FooterSection>
       }
-      category={metaData.tag.name}
+      categoryName={metaData.tag.name}
       tagColor={metaData.tag.color}
     >
       {content}

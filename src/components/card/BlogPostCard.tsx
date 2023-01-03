@@ -18,7 +18,7 @@ const BlogPostCard = (props: IBlogMetaData) => {
 
   return (
     <BlogPostCardArticle color={tag.color || ''}>
-      <Link href={{ pathname: `/blog/${id}` }}>
+      <Link href={{ pathname: `/post/${id}` }}>
         <section>
           <section>
             {thumbnailUrl && (

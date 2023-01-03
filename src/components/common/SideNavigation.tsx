@@ -42,9 +42,9 @@ const SideNavigation = (props: IBlogListProps) => {
   const router = useRouter();
   const query = router.query;
 
-  const isAllPosts = !query.category;
+  const isAllPosts = !query.categoryName;
   const isActiveCategoryPost = (activeCategory: string) =>
-    query.category === activeCategory;
+    query.categoryName === activeCategory;
 
   return (
     <SideNavigationLayout>
