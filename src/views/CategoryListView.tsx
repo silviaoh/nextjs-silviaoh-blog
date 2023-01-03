@@ -2,31 +2,18 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import BlogPostCard from '../components/card/BlogPostCard';
 import PrimaryMainLayout from '../components/layouts/PrimaryMainLayout';
-import { IBlogListProps } from '../types';
+import { IListOfBlogPostsProps } from '../types';
 
-const CategoryListView = (props: IBlogListProps) => {
-  const { blogs } = props;
-
+const CategoryListView = (props: IListOfBlogPostsProps) => {
+  const { posts } = props;
   const router = useRouter();
   const query = router.query;
-
-  const mainTitle =
-    blogs.find((post) => post.categoryName === query.categoryName)
-      ?.categoryName || '';
-
-  const isCategoryBlogsList = (mappedCategoryName: string) =>
-    mappedCategoryName === query.categoryName;
+  const categoryName = (query.categoryName || '') as string;
 
   return (
-    <PrimaryMainLayout mainTitle={mainTitle}>
-      {blogs.map((post, postIdx) => {
-        return post.filesInCategory.map((file, fileIdx) => {
-          return (
-            isCategoryBlogsList(post.categoryName) && (
-              <BlogPostCard key={`${postIdx}-${fileIdx}`} {...file.metaData} />
-            )
-          );
-        });
+    <PrimaryMainLayout mainTitle={categoryName}>
+      {posts.map((postsItem, postsIdx) => {
+        return <BlogPostCard key={`${postsIdx}`} {...postsItem.data} />;
       })}
     </PrimaryMainLayout>
   );

@@ -3,7 +3,7 @@ import { GetStaticProps } from 'next';
 import Head from 'next/head';
 
 import PrimaryLayout from '../../src/components/layouts/PrimaryLayout';
-import { IBlogPostProps, IFilesInCategory } from '../../src/types';
+import { IBlogPostProps, IPost } from '../../src/types';
 import { getBlogPostPaths, getBlogs } from '../../src/utils/blogUtils';
 import { getFile } from '../../src/utils/mdxUtils';
 import PostView from '../../src/views/PostView';
@@ -43,8 +43,7 @@ export const getStaticProps: GetStaticProps = async (props) => {
   );
   const clickedCategory = blogs.find((blog) =>
     blog.filesInCategory.find(
-      (categoryPost: IFilesInCategory) =>
-        categoryPost.metaData.id === props.params?.slug,
+      (categoryPost: IPost) => categoryPost.data.id === props.params?.slug,
     ),
   ) || { categoryName: '' };
 
@@ -61,5 +60,5 @@ export const getStaticProps: GetStaticProps = async (props) => {
     props.params.slug,
   );
 
-  return { props: { count, blogs, blogPost: { metaData: data, content } } };
+  return { props: { count, blogs, blogPost: { data: data, content } } };
 };

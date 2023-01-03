@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { RainbowBorderStyle, RainbowTextStyle } from '../../styles/Animation';
 import { FlexBox, ImageBox, Paragraph } from '../../styles/Common';
-import { IBlogListProps } from '../../types';
+import { IListOfBlogPostsProps } from '../../types';
 
 const SideNavProfile = () => {
   return (
@@ -37,8 +37,8 @@ const SideNavProfile = () => {
   );
 };
 
-const SideNavigation = (props: IBlogListProps) => {
-  const { blogs, count } = props;
+const SideNavigation = (props: IListOfBlogPostsProps) => {
+  const { categories } = props;
   const router = useRouter();
   const query = router.query;
 
@@ -51,33 +51,38 @@ const SideNavigation = (props: IBlogListProps) => {
       <SideNavTopImage />
       <SideNavProfile />
       <ul>
-        <CategoryItem className={`category-all ${isAllPosts && 'active'}`}>
-          <FontAwesomeIcon icon={faSeedling} width={12} />
-          <Link href={{ pathname: '/' }}>All</Link>
-          <span>{count}</span>
-          <FontAwesomeIcon icon={faEllipsis} width={10} />
-        </CategoryItem>
-        {blogs.map((post, postIdx) => {
-          const pathname = `/category/${post.categoryName}`;
+        {categories?.map((categoryItem, categoryIdx) => {
+          const pathname = `/category/${categoryItem.categoryName}`;
           const className = {
             categoryItem: `category-item ${
-              isActiveCategoryPost(post.categoryName) && 'active'
+              isActiveCategoryPost(categoryItem.categoryName) && 'active'
             }`,
           };
 
           return (
-            <Link key={postIdx} href={{ pathname }}>
-              <CategoryItem className={className.categoryItem}>
-                <FlexBox gap="0.6rem">
-                  <FontAwesomeIcon icon={faFeather} width={9} />
-                  <span>{post.categoryName}</span>
-                </FlexBox>
-                <GradientCircleBox>
-                  <Paragraph fontSize="1rem" fontWeight={500}>
-                    {post.count}
-                  </Paragraph>
-                </GradientCircleBox>
-              </CategoryItem>
+            <Link key={categoryIdx} href={{ pathname }}>
+              {categoryItem.categoryName === 'All' ? (
+                <CategoryItem
+                  className={`category-all ${isAllPosts && 'active'}`}
+                >
+                  <FontAwesomeIcon icon={faSeedling} width={12} />
+                  <Link href={{ pathname: '/' }}>All</Link>
+                  <span>{categoryItem.count}</span>
+                  <FontAwesomeIcon icon={faEllipsis} width={10} />
+                </CategoryItem>
+              ) : (
+                <CategoryItem className={className.categoryItem}>
+                  <FlexBox gap="0.6rem">
+                    <FontAwesomeIcon icon={faFeather} width={9} />
+                    <span>{categoryItem.categoryName}</span>
+                  </FlexBox>
+                  <GradientCircleBox>
+                    <Paragraph fontSize="1rem" fontWeight={500}>
+                      {categoryItem.count}
+                    </Paragraph>
+                  </GradientCircleBox>
+                </CategoryItem>
+              )}
             </Link>
           );
         })}

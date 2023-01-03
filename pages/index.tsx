@@ -3,10 +3,16 @@ import Head from 'next/head';
 
 import PrimaryLayout from '../src/components/layouts/PrimaryLayout';
 import ListOfBlogPostsView from '../src/views/ListOfBlogPostsView';
-import { IBlogListProps } from '../src/types';
-import { getBlogs } from '../src/utils/blogUtils';
+import { IPost, IListOfBlogPostsProps } from '../src/types';
+import BlogPostService from '../src/service/BlogPostService';
 
-const ListOfBlogPosts = (props: IBlogListProps) => {
+export interface IListOfBlogPostsProps {
+  posts: IPost[];
+  categories: { name: string; count: number }[];
+}
+
+const ListOfBlogPosts = (props: IListOfBlogPostsProps) => {
+  console.log('props', props);
   return (
     <React.Fragment>
       <Head>
@@ -21,11 +27,9 @@ const ListOfBlogPosts = (props: IBlogListProps) => {
 export default ListOfBlogPosts;
 
 export const getStaticProps = async () => {
-  const blogs = getBlogs();
-  const count = blogs.reduce(
-    (count: number, currPost: any) => count + currPost.count,
-    0,
-  );
+  const blogPostService = new BlogPostService();
+  const { data: posts } = await blogPostService.getListOfBlogPosts();
+  const { data: categories } = await blogPostService.getCategoryMenu();
 
-  return { props: { count, blogs } };
+  return { props: { posts, categories } };
 };

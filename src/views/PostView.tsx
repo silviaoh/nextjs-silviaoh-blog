@@ -2,22 +2,22 @@ import React from 'react';
 import styled from 'styled-components';
 import PrimaryMainLayout from '../components/layouts/PrimaryMainLayout';
 import { FlexMixin } from '../styles/Common';
-import { IFilesInCategory } from '../types';
+import { IPost } from '../types';
 
-const PostView = (props: IFilesInCategory) => {
-  const { metaData, content } = props;
+const PostView = (props: IPost) => {
+  const { data, content } = props;
 
   return (
     <PrimaryMainLayout
-      mainTitle={metaData.title}
+      mainTitle={data.title}
       subTitle={
-        <FooterSection color={metaData.tag.color || ''}>
-          by <strong>{metaData.author}</strong> on
-          <strong>{metaData.createdAt}</strong>
+        <FooterSection color={data.tag.color || ''}>
+          by <strong>{data.author}</strong> on
+          <strong>{data.createdAt}</strong>
         </FooterSection>
       }
-      categoryName={metaData.tag.name}
-      tagColor={metaData.tag.color}
+      categoryName={data.tag.name}
+      tagColor={data.tag.color}
     >
       {content}
     </PrimaryMainLayout>

@@ -1,13 +1,16 @@
+import { GetStaticProps } from 'next';
 import Head from 'next/head';
+import { ParsedUrlQuery } from 'querystring';
 import React from 'react';
 
 import PrimaryLayout from '../../src/components/layouts/PrimaryLayout';
-import { IBlogListProps } from '../../src/types';
-import { getBlogs, getPaths } from '../../src/utils/blogUtils';
+import BlogPostService from '../../src/service/BlogPostService';
+import { IListOfBlogPostsProps } from '../../src/types';
+import { getChildrenDirectory } from '../../src/utils/mdxUtils';
 
 import CategoryListView from '../../src/views/CategoryListView';
 
-const Category = (props: IBlogListProps) => {
+const Category = (props: IListOfBlogPostsProps) => {
   return (
     <React.Fragment>
       <Head>
@@ -23,20 +26,25 @@ const Category = (props: IBlogListProps) => {
 export default Category;
 
 export const getStaticPaths = async () => {
-  const paths = getPaths();
-  console.log('paths', paths);
+  const categories = getChildrenDirectory('') || [];
+  const paths = categories.map((categoryName) => ({
+    params: { categoryName },
+  }));
+
   return {
     paths,
     fallback: false,
   };
 };
 
-export const getStaticProps = async () => {
-  const blogs = getBlogs();
-  const count = blogs.reduce(
-    (count: number, currPost: any) => count + currPost.count,
-    0,
-  );
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const { categoryName } = params as ParsedUrlQuery;
 
-  return { props: { count, blogs } };
+  const blogPostService = new BlogPostService();
+  const { data: posts } = await blogPostService.getListOfFilteredBlogPosts(
+    categoryName as string,
+  );
+  const { data: categories } = await blogPostService.getCategoryMenu();
+
+  return { props: { posts, categories } };
 };

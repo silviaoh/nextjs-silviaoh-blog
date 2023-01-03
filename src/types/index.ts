@@ -13,27 +13,27 @@ export interface IBlogMetaData {
   createdAt: string;
 }
 
-export interface IFilesInCategory {
-  metaData: IBlogMetaData;
+export interface IPost {
+  data: IBlogMetaData;
   content: string;
 }
 
-export interface IBlogs {
+export interface IPosts {
   categoryName: string;
-  filesInCategory: IFilesInCategory[];
+  post: IPost[];
   count: number;
 }
 
-export interface IBlogListProps {
-  blogs: IBlogs[];
-  count: number;
+export interface IListOfBlogPostsProps {
+  posts: IPost[];
+  categories: { categoryName: string; count: number }[];
 }
 
-export interface IPrimaryLayoutProps extends IBlogListProps {
+export interface IPrimaryLayoutProps extends IListOfBlogPostsProps {
   children: React.ReactNode;
 }
 
-export interface IBlogViewProps extends IBlogListProps {
+export interface IBlogViewProps extends IListOfBlogPostsProps {
   mainTitle: string;
   subTitle: string;
 }
@@ -42,6 +42,6 @@ export interface IBlogPostPaths {
   params: { slug: string };
 }
 
-export interface IBlogPostProps extends IBlogListProps {
-  blogPost: IFilesInCategory;
+export interface IBlogPostProps extends IListOfBlogPostsProps {
+  blogPost: IPost;
 }

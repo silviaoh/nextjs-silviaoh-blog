@@ -4,11 +4,11 @@ import { IPrimaryLayoutProps } from '../../types';
 import SideNavigation from '../common/SideNavigation';
 
 const PrimaryLayout = (props: IPrimaryLayoutProps) => {
-  const { children, blogs, count } = props;
+  const { children, posts, categories } = props;
 
   return (
     <RootLayoutSection>
-      <SideNavigation blogs={blogs} count={count} />
+      <SideNavigation posts={posts} categories={categories} />
       <Main>{children}</Main>
     </RootLayoutSection>
   );
