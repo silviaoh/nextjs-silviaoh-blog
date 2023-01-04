@@ -11,8 +11,15 @@ class BlogPostService {
 
   async getListOfFilteredBlogPosts(categoryName: string) {
     return await axiosInterceptor({
-      method: 'post',
+      method: 'get',
       url: `/posts/${categoryName}`,
+    });
+  }
+
+  async getBlogPost(title: string) {
+    return await axiosInterceptor({
+      method: 'get',
+      url: `/post/${title}`,
     });
   }
 

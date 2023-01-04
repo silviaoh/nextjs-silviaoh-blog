@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { RainbowBorderStyle, RainbowTextStyle } from '../../styles/Animation';
 import { FlexBox, ImageBox, Paragraph } from '../../styles/Common';
-import { IListOfBlogPostsProps } from '../../types';
+import { ICategories, IListOfBlogPostsProps } from '../../types';
 
 const SideNavProfile = () => {
   return (
@@ -37,7 +37,7 @@ const SideNavProfile = () => {
   );
 };
 
-const SideNavigation = (props: IListOfBlogPostsProps) => {
+const SideNavigation = (props: { categories: ICategories[] }) => {
   const { categories } = props;
   const router = useRouter();
   const query = router.query;

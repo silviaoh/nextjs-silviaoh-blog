@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import { IPrimaryLayoutProps } from '../../types';
+import { IBlogPostProps, IListOfBlogPostsProps } from '../../types';
 import SideNavigation from '../common/SideNavigation';
 
-const PrimaryLayout = (props: IPrimaryLayoutProps) => {
-  const { children, posts, categories } = props;
+const PrimaryLayout = (props: IListOfBlogPostsProps | IBlogPostProps) => {
+  const { children, categories } = props;
 
   return (
     <RootLayoutSection>
-      <SideNavigation posts={posts} categories={categories} />
+      <SideNavigation categories={categories} />
       <Main>{children}</Main>
     </RootLayoutSection>
   );

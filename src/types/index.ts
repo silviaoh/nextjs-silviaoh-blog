@@ -1,7 +1,6 @@
 import React from 'react';
 
-export interface IBlogMetaData {
-  id: string;
+export interface IBlogPostData {
   thumbnailUrl: string;
   tag: {
     name: string;
@@ -14,8 +13,13 @@ export interface IBlogMetaData {
 }
 
 export interface IPost {
-  data: IBlogMetaData;
+  data: IBlogPostData;
   content: string;
+}
+
+export interface ICategories {
+  categoryName: string;
+  count: number;
 }
 
 export interface IPosts {
@@ -26,11 +30,8 @@ export interface IPosts {
 
 export interface IListOfBlogPostsProps {
   posts: IPost[];
-  categories: { categoryName: string; count: number }[];
-}
-
-export interface IPrimaryLayoutProps extends IListOfBlogPostsProps {
-  children: React.ReactNode;
+  categories: ICategories[];
+  children?: React.ReactNode;
 }
 
 export interface IBlogViewProps extends IListOfBlogPostsProps {
@@ -42,6 +43,8 @@ export interface IBlogPostPaths {
   params: { slug: string };
 }
 
-export interface IBlogPostProps extends IListOfBlogPostsProps {
-  blogPost: IPost;
+export interface IBlogPostProps {
+  post: IPost;
+  categories: ICategories[];
+  children?: React.ReactNode;
 }

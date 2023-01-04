@@ -9,13 +9,16 @@ import {
   FlexMixin,
   SingleLineEllepsisMixin,
 } from '../../styles/Common';
-import { IBlogMetaData } from '../../types';
+import { IBlogPostData } from '../../types';
 import Link from 'next/link';
+import getTitlePathParam from '../../utils/getTitlePathParam';
 
-const BlogPostCard = (props: IBlogMetaData) => {
-  const { id, thumbnailUrl, tag, title, description, author, createdAt } =
-    props;
+const BlogPostCard = (props: IBlogPostData) => {
+  const { thumbnailUrl, tag, title, description, author, createdAt } = props;
 
+  const id = getTitlePathParam(title);
+
+  console.log('id', id);
   return (
     <BlogPostCardArticle color={tag.color || ''}>
       <Link href={{ pathname: `/post/${id}` }}>
