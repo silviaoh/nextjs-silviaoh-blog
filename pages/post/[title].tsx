@@ -41,7 +41,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { data: post } = await blogPostService.getBlogPost(
     params?.title as string,
   );
-
   const { data: categories } = await blogPostService.getCategoryMenu();
+
   return { props: { categories, post } };
 };

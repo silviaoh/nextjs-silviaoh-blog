@@ -15,7 +15,7 @@ export const ImageBoxStyle = css<{
 
 export const ParagraphStyle = css<{
   fontSize: string;
-  color?: 'black' | 'gray' | 'darkGray' | 'deepDarkGray';
+  color?: 'black' | 'gray' | 'darkGray' | 'deepDarkGray' | 'white';
   fontWeight?: number;
   margin?: string;
 }>`

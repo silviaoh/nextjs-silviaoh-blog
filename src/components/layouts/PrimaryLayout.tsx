@@ -1,14 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { IBlogPostProps, IListOfBlogPostsProps } from '../../types';
 import SideNavigation from '../common/SideNavigation';
+import ProfileImageBox from '../profile/ProfileImageBox';
 
 const PrimaryLayout = (props: IListOfBlogPostsProps | IBlogPostProps) => {
   const { children, categories } = props;
 
+  // 클릭시 사이드 네비게이션 나오게 하는 기능
+  const [isEnableSideNav, setIsEnableSideNav] = useState(false);
+  const enableSideNav = () => setIsEnableSideNav(true);
+  const disableSideNav = () => setIsEnableSideNav(false);
+
   return (
     <RootLayoutSection>
-      <SideNavigation categories={categories} />
+      {!isEnableSideNav && (
+        <ProfileImageBox
+          width="5rem"
+          height="5rem"
+          borderRadius="5px"
+          enablePointer={true}
+          positions={{ top: '1rem', left: '1rem' }}
+          onClick={enableSideNav}
+        />
+      )}
+      <SideNavigation
+        categories={categories}
+        isEnableSideNav={isEnableSideNav}
+        disableSideNav={disableSideNav}
+      />
       <Main>{children}</Main>
     </RootLayoutSection>
   );

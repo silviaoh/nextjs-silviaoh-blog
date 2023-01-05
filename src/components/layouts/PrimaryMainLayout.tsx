@@ -1,11 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-import { FlexMixin } from '../../styles/Common';
+import { FlexMixin, Paragraph } from '../../styles/Common';
 
 interface IPrimaryMainLayoutProps {
   mainTitle: string;
   children: React.ReactNode;
+  isGridMode: boolean;
   mainImageUrl?: string;
   subTitle?: string | React.ReactElement;
   categoryName?: string;
@@ -15,6 +16,7 @@ interface IPrimaryMainLayoutProps {
 const PrimaryMainLayout = (props: IPrimaryMainLayoutProps) => {
   const {
     mainTitle,
+    isGridMode,
     children,
     mainImageUrl = '',
     subTitle = '',
@@ -26,12 +28,16 @@ const PrimaryMainLayout = (props: IPrimaryMainLayoutProps) => {
     <React.Fragment>
       <MainImageSection mainImageUrl={mainImageUrl}>
         <TitleH1>{mainTitle}</TitleH1>
-        {subTitle && <SubTitleH3>{subTitle}</SubTitleH3>}
+        {subTitle && (
+          <SubTitleP fontSize="1.6rem" color="white">
+            {subTitle}
+          </SubTitleP>
+        )}
         {categoryName && (
           <CategorySpan tagColor={tagColor}>{categoryName}</CategorySpan>
         )}
       </MainImageSection>
-      <CardListSection>{children}</CardListSection>
+      <CardListSection isGridMode={isGridMode}>{children}</CardListSection>
     </React.Fragment>
   );
 };
@@ -43,10 +49,10 @@ const MainImageSection = styled.section<{ mainImageUrl: string }>`
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    gap: '3rem',
+    gap: '1.6rem',
   })}
   position: relative;
-  height: 33rem;
+  height: 46rem;
   background-image: ${({ mainImageUrl }) =>
     `url(${mainImageUrl ? mainImageUrl : '/images/common/history.jpg'})`};
   background-size: cover;
@@ -56,7 +62,7 @@ const MainImageSection = styled.section<{ mainImageUrl: string }>`
   &::before {
     position: absolute;
     content: '';
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.6);
     width: 100%;
     height: 100%;
   }
@@ -64,16 +70,14 @@ const MainImageSection = styled.section<{ mainImageUrl: string }>`
 
 const TitleH1 = styled.h1`
   padding: 0 2rem;
-  font-size: 5rem;
+  font-size: 4.4rem;
   color: ${({ theme }) => theme.colors.white};
   white-space: pre-line;
-  min-height: 12rem;
-  text-transform: uppercase;
   text-align: center;
   z-index: 1;
 `;
 
-const SubTitleH3 = styled.h3`
+const SubTitleP = styled(Paragraph)`
   font-size: 1.6rem;
   color: ${({ theme }) => theme.colors.white};
   z-index: 1;
@@ -81,31 +85,44 @@ const SubTitleH3 = styled.h3`
 
 const CategorySpan = styled.span<{ tagColor?: string }>`
   font-size: 1.6rem;
-  font-weight: 600;
-  color: ${({ tagColor }) => tagColor};
+  color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ tagColor }) => tagColor};
+  padding: 0.8rem 1.2rem;
+  border-radius: 20px;
+  z-index: 1;
 `;
 
-const CardListSection = styled.section`
-  display: grid;
-  padding: 6rem 8rem;
-  justify-items: center;
-  row-gap: 3rem;
-  column-gap: 4rem;
-  min-width: 50rem;
-  grid-template-columns: repeat(auto-fill, minmax(30%, auto));
+const CardListSection = styled.section<{ isGridMode: boolean }>`
+  ${({ isGridMode }) => {
+    if (isGridMode) {
+      return css`
+        display: grid;
+        justify-items: center;
+        row-gap: 3rem;
+        column-gap: 1.6rem;
+        padding: 8rem 12rem;
 
-  @media screen and (min-width: 1210px) {
-  }
+        @media screen and (min-width: 1480px) {
+          grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+        }
 
-  @media screen and (min-width: 1045px) and (max-width: 1300px) {
-    grid-template-columns: repeat(auto-fill, minmax(40%, auto));
-  }
+        @media screen and (min-width: 1170px) and (max-width: 1480px) {
+          grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+        }
 
-  @media screen and (max-width: 1045px) {
-    grid-template-columns: repeat(auto-fill, minmax(50%, auto));
-  }
+        @media screen and (min-width: 850px) and (max-width: 1170px) {
+          grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
+        }
 
-  @media screen and (max-width: 870px) {
-    grid-template-columns: repeat(auto-fill, minmax(50%, auto));
-  }
+        @media screen and (max-width: 850px) {
+          grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
+        }
+      `;
+    } else {
+      return css`
+        display: block;
+        margin: 0 auto;
+      `;
+    }
+  }};
 `;

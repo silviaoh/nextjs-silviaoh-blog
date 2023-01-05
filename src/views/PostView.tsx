@@ -12,12 +12,13 @@ const PostView = (props: IPost) => {
       mainTitle={data.title}
       subTitle={
         <FooterSection color={data.tag.color || ''}>
-          by <strong>{data.author}</strong> on
-          <strong>{data.createdAt}</strong>
+          by<span>{data.author}</span>on
+          <span>{data.createdAt}</span>
         </FooterSection>
       }
       categoryName={data.tag.name}
       tagColor={data.tag.color}
+      isGridMode
     >
       {content}
     </PrimaryMainLayout>
@@ -28,16 +29,15 @@ export default PostView;
 
 const FooterSection = styled.div`
   ${FlexMixin({ gap: '0.6rem' })}
-  padding-top: 2rem;
+  padding-top: 3.6rem;
   font-size: 1.6rem;
   border-top: 1px solid ${({ theme }) => theme.colors.gray};
 
-  strong:first-child {
-    font-weight: 600;
+  > span:first-child {
     text-decoration: underline;
   }
 
-  strong:last-child {
+  > span:last-child {
     color: ${({ color }) => color};
   }
 `;

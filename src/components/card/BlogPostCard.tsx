@@ -18,7 +18,6 @@ const BlogPostCard = (props: IBlogPostData) => {
 
   const id = getTitlePathParam(title);
 
-  console.log('id', id);
   return (
     <BlogPostCardArticle color={tag.color || ''}>
       <Link href={{ pathname: `/post/${id}` }}>
@@ -42,8 +41,7 @@ const BlogPostCard = (props: IBlogPostData) => {
             </ContentSection>
           </section>
           <FooterSection color={tag.color || ''}>
-            by <strong>{author}</strong> on
-            <strong>{createdAt}</strong>
+            by<strong>{author}</strong>on<strong>{createdAt}</strong>
           </FooterSection>
         </section>
       </Link>
@@ -60,8 +58,7 @@ const BlogPostCardArticle = styled.article`
   })}
   position: relative;
   top: 0px;
-  min-width: 31.2rem;
-  max-width: 31.2rem;
+  width: 100%;
   height: 38rem;
   box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.1);
   border-radius: 5px;

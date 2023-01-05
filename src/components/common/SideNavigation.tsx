@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -7,24 +6,26 @@ import {
   faSeedling,
   faFeather,
   faEllipsis,
+  faClose,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { RainbowBorderStyle, RainbowTextStyle } from '../../styles/Animation';
-import { FlexBox, ImageBox, Paragraph } from '../../styles/Common';
-import { ICategories, IListOfBlogPostsProps } from '../../types';
+import { FlexBox, Paragraph } from '../../styles/Common';
+import { ICategories } from '../../types';
+import ProfileImageBox from '../profile/ProfileImageBox';
 
 const SideNavProfile = () => {
   return (
     <React.Fragment>
-      <ProfileImageBox width="10rem" height="10rem" borderRadius="10px">
-        <Image
-          src="/images/common/profile.jpeg"
-          layout="fill"
-          objectFit="cover"
-          objectPosition={'center'}
-        />
-      </ProfileImageBox>
+      <ProfileImageBox
+        width="10rem"
+        height="10rem"
+        borderRadius="10px"
+        enablePointer={false}
+        positions={{ top: 'calc(100px - 5rem)', left: '50%' }}
+        transform="translateX(-50%)"
+      />
       <NicknameBox>
         <Paragraph fontSize="1.6rem" fontWeight={500}>
           silvia_oh_dev_story
@@ -37,8 +38,12 @@ const SideNavProfile = () => {
   );
 };
 
-const SideNavigation = (props: { categories: ICategories[] }) => {
-  const { categories } = props;
+const SideNavigation = (props: {
+  categories: ICategories[];
+  isEnableSideNav: boolean;
+  disableSideNav: () => void;
+}) => {
+  const { categories, isEnableSideNav, disableSideNav } = props;
   const router = useRouter();
   const query = router.query;
 
@@ -47,7 +52,12 @@ const SideNavigation = (props: { categories: ICategories[] }) => {
     query.categoryName === activeCategory;
 
   return (
-    <SideNavigationLayout>
+    <SideNavigationLayout isEnableSideNav={isEnableSideNav}>
+      <FontAwesomeIcon
+        icon={faClose}
+        className="fa-close"
+        onClick={disableSideNav}
+      />
       <SideNavTopImage />
       <SideNavProfile />
       <ul>
@@ -93,18 +103,28 @@ const SideNavigation = (props: { categories: ICategories[] }) => {
 
 export default SideNavigation;
 
-const SideNavigationLayout = styled.aside`
-  position: sticky;
+const SideNavigationLayout = styled.aside<{ isEnableSideNav: boolean }>`
+  position: fixed;
   top: 0;
-  left: 0;
-  width: 250px;
+  left: ${({ isEnableSideNav }) => (isEnableSideNav ? '0' : '-25rem')};
+  width: 25rem;
   height: 100vh;
   background-color: #fff;
-
+  transition: left 0.3s ease-in-out;
   box-shadow: 0px 0px 5px 0px rgba(168, 159, 253, 0.2);
   -webkit-box-shadow: 0px 0px 5px 0px rgba(168, 159, 253, 0.2);
   -moz-box-shadow: 0px 0px 5px 0px rgba(168, 159, 253, 0.2);
   z-index: 2;
+
+  .fa-close {
+    position: absolute;
+    width: 1.8rem;
+    height: 1.8rem;
+    margin: 1rem;
+    right: 0;
+    color: ${({ theme }) => theme.colors.white};
+    cursor: pointer;
+  }
 
   > ul {
     display: flex;
@@ -119,14 +139,6 @@ const SideNavTopImage = styled.div`
   background-image: url('/images/common/sidenav.jpg');
   background-position: 57% 58%;
   background-attachment: scroll;
-`;
-
-const ProfileImageBox = styled(ImageBox)`
-  position: absolute;
-  top: calc(100px - 5rem);
-  left: 50%;
-  transform: translateX(-50%);
-  box-shadow: 1px 4px 18px 0px rgba(58, 59, 59, 0.57);
 `;
 
 const GradientCircleBox = styled.div`
@@ -168,7 +180,6 @@ export const CategoryItem = styled.li`
 
   span {
     color: #333941;
-    text-transform: uppercase;
   }
 
   &.category-all {

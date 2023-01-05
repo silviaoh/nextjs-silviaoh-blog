@@ -11,6 +11,7 @@ const ListOfBlogPostsView = (props: IListOfBlogPostsProps) => {
     <PrimaryMainLayout
       mainTitle="All History"
       subTitle="차곡차곡 쌓여가는 기록"
+      isGridMode
     >
       {posts.map((postsItem, postsIdx) => {
         return <BlogPostCard key={`${postsIdx}`} {...postsItem.data} />;

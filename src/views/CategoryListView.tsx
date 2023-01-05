@@ -11,7 +11,7 @@ const CategoryListView = (props: IListOfBlogPostsProps) => {
   const categoryName = (query.categoryName || '') as string;
 
   return (
-    <PrimaryMainLayout mainTitle={categoryName}>
+    <PrimaryMainLayout mainTitle={categoryName} isGridMode>
       {posts.map((postsItem, postsIdx) => {
         return <BlogPostCard key={`${postsIdx}`} {...postsItem.data} />;
       })}
