@@ -4,6 +4,11 @@ import PrimaryMainLayout from '../components/layouts/PrimaryMainLayout';
 import { FlexMixin } from '../styles/Common';
 import { IPost } from '../types';
 
+// TODO NEXT/mdx 시도해볼까?
+// 스타일링 하는 법 알기
+// 스타일 해야 하는 태그들 정리하기
+// 스타일을 좀 더 간단히 적용할 수 있는 방법은 없는지
+
 const PostView = (props: IPost) => {
   const { data, content } = props;
 
