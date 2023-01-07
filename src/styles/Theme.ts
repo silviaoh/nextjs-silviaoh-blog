@@ -4,7 +4,7 @@ const fontSize = {};
 
 const colors = {
   white: '#fff',
-  black: 'rgb(51, 51, 51)',
+  black: '#2c3748',
   gray: '#F8F8F8',
   darkGray: 'rgb(94, 94, 94)',
   deepDarkGray: '#6e6e6e',

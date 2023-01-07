@@ -66,7 +66,8 @@ const MainImageSection = styled.section<{ mainImageUrl: string }>`
 
 const TitleH1 = styled.h1`
   padding: 0 2rem;
-  font-size: 4.4rem;
+  font-size: 3.2rem;
+  font-weight: 700;
   color: ${({ theme }) => theme.colors.white};
   white-space: pre-line;
   text-align: center;
@@ -80,11 +81,12 @@ const SubTitleBox = styled.div`
 `;
 
 const CategorySpan = styled.span<{ tagColor?: string }>`
-  font-size: 1.6rem;
+  font-size: 1.4rem;
+  font-weight: 500;
   color: ${({ theme }) => theme.colors.white};
   background-color: ${({ tagColor }) => tagColor};
-  padding: 0.8rem 1.2rem;
-  border-radius: 20px;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
   z-index: 1;
 `;
 
@@ -116,8 +118,8 @@ const CardListSection = styled.section<{ isGridMode: boolean }>`
       `;
     } else {
       return css`
-        display: block;
-        margin: 0 auto;
+        margin: auto 12rem;
+        padding: 4.8rem 0;
       `;
     }
   }};

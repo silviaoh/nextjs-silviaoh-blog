@@ -12,8 +12,9 @@ const GlobalStyle = createGlobalStyle`
 	margin: 0;
 	padding: 0;
 	border: 0;
+	color: #2c3748;
 	box-sizing: border-box;
-	font-family: 'Noto Sans', sans-serif;
+	font-family: 'Inter', sans-serif;
 }
 
 li {

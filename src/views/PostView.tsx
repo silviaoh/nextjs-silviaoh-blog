@@ -1,11 +1,11 @@
-import { MDXRemote } from 'next-mdx-remote';
 import React from 'react';
+import { MDXRemote } from 'next-mdx-remote';
+import { ChakraProvider } from '@chakra-ui/react';
 import styled from 'styled-components';
 import PrimaryMainLayout from '../components/layouts/PrimaryMainLayout';
+import MDXComponents from '../components/markdown/MDXComponents';
 import { FlexMixin } from '../styles/Common';
 import { IPost } from '../types';
-
-const components = {};
 
 const PostView = (props: IPost) => {
   const { data, content } = props;
@@ -15,15 +15,17 @@ const PostView = (props: IPost) => {
       mainTitle={data.title}
       subTitle={
         <FooterSection color={data.tag.color || ''}>
-          by<span>{data.author}</span>on
-          <span>{data.createdAt}</span>
+          by<strong>{data.author}</strong>on
+          <strong>{data.createdAt}</strong>
         </FooterSection>
       }
       categoryName={data.tag.name}
       tagColor={data.tag.color}
       isGridMode={false}
     >
-      <MDXRemote {...content} components={components} />
+      <ChakraProvider>
+        <MDXRemote {...content} components={MDXComponents} />
+      </ChakraProvider>
     </PrimaryMainLayout>
   );
 };
@@ -32,15 +34,15 @@ export default PostView;
 
 const FooterSection = styled.div`
   ${FlexMixin({ gap: '0.6rem' })}
-  padding-top: 3.6rem;
-  font-size: 1.6rem;
-  border-top: 1px solid ${({ theme }) => theme.colors.gray};
+  font-size: 1.4rem;
+  color: ${({ theme }) => theme.colors.white};
 
-  > span:first-child {
+  > strong:first-child {
+    color: ${({ theme }) => theme.colors.white};
     text-decoration: underline;
   }
 
-  > span:last-child {
+  > strong:last-child {
     color: ${({ color }) => color};
   }
 `;
