@@ -1,6 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import matter from 'gray-matter';
+import { serialize } from 'next-mdx-remote/serialize';
 
 const systemRootUrl = process.cwd();
 const CONTENT_ROOT_DIRECTORY_NAME = 'articles';
@@ -15,7 +16,7 @@ export const getChildrenDirectory = (directoryName: string) => {
   }
 };
 
-export const getMdxFile = (directoryName: string, slug: string) => {
+export const getMdxFile = async (directoryName: string, slug: string) => {
   const source = fs.readFileSync(
     path.join(
       systemRootUrl,
@@ -27,9 +28,10 @@ export const getMdxFile = (directoryName: string, slug: string) => {
   );
 
   const { data, content } = matter(source);
+  const serializedContent = await serialize(content);
 
   return {
     data,
-    content,
+    content: serializedContent,
   };
 };

@@ -3,7 +3,7 @@ import { IPost } from '../../../src/types';
 import getTitlePathParam from '../../../src/utils/getTitlePathParam';
 import { getChildrenDirectory, getMdxFile } from '../../../src/utils/mdxUtils';
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const title = req.query.title;
     const categories = getChildrenDirectory('') || [];
@@ -15,18 +15,23 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
       return;
     }
 
-    const posts = categories.reduce((acc: any, categoryName) => {
-      const mdxFiles = getChildrenDirectory(categoryName) || [];
-      mdxFiles.forEach((mdxFile) => {
-        const mdxContents = getMdxFile(
-          categoryName,
-          mdxFile.replace('.mdx', ''),
-        );
-        acc.push(mdxContents);
-      });
+    const posts = await categories.reduce(
+      async (prevPromise: any, categoryName) => {
+        let arr = await prevPromise;
+        const mdxFiles = getChildrenDirectory(categoryName) || [];
 
-      return acc;
-    }, []);
+        for (const mdxFile of mdxFiles) {
+          const mdxContents = await getMdxFile(
+            categoryName,
+            mdxFile.replace('.mdx', ''),
+          );
+          arr.push(mdxContents);
+        }
+
+        return arr;
+      },
+      Promise.resolve([]),
+    );
 
     const post =
       posts.find(

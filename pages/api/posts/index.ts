@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getChildrenDirectory, getMdxFile } from '../../../src/utils/mdxUtils';
 
-export default (_: NextApiRequest, res: NextApiResponse) => {
+export default async (_: NextApiRequest, res: NextApiResponse) => {
   try {
     const categories = getChildrenDirectory('') || [];
 
@@ -12,18 +12,23 @@ export default (_: NextApiRequest, res: NextApiResponse) => {
       return;
     }
 
-    const posts = categories.reduce((acc: any, categoryName) => {
-      const mdxFiles = getChildrenDirectory(categoryName) || [];
-      mdxFiles.forEach((mdxFile) => {
-        const mdxContents = getMdxFile(
-          categoryName,
-          mdxFile.replace('.mdx', ''),
-        );
-        acc.push(mdxContents);
-      });
+    const posts = await categories.reduce(
+      async (prevPromise: any, categoryName) => {
+        let arr = await prevPromise;
+        const mdxFiles = getChildrenDirectory(categoryName) || [];
 
-      return acc;
-    }, []);
+        for (const mdxFile of mdxFiles) {
+          const mdxContents = await getMdxFile(
+            categoryName,
+            mdxFile.replace('.mdx', ''),
+          );
+          arr.push(mdxContents);
+        }
+
+        return arr;
+      },
+      Promise.resolve([]),
+    );
 
     res.status(200).json(posts);
   } catch (err) {

@@ -9,6 +9,7 @@ import PrimaryLayout from '../../src/components/layouts/PrimaryLayout';
 import PostView from '../../src/views/PostView';
 
 const Post = (props: IBlogPostProps) => {
+  console.log('props.post', props.post);
   return (
     <React.Fragment>
       <Head>

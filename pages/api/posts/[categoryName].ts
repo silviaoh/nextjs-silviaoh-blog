@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getChildrenDirectory, getMdxFile } from '../../../src/utils/mdxUtils';
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const categoryName = req.query.categoryName;
     const categories = getChildrenDirectory('') || [];
@@ -22,9 +22,11 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     const mdxFiles = getChildrenDirectory(categoryName) || [];
-    const posts = mdxFiles.map((mdxFile) => {
-      return getMdxFile(categoryName, mdxFile.replace('.mdx', ''));
-    });
+    const posts = await Promise.all(
+      mdxFiles.map(async (mdxFile) => {
+        return await getMdxFile(categoryName, mdxFile.replace('.mdx', ''));
+      }),
+    );
 
     res.status(200).json(posts);
   } catch (err) {

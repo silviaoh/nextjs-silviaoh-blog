@@ -28,11 +28,7 @@ const PrimaryMainLayout = (props: IPrimaryMainLayoutProps) => {
     <React.Fragment>
       <MainImageSection mainImageUrl={mainImageUrl}>
         <TitleH1>{mainTitle}</TitleH1>
-        {subTitle && (
-          <SubTitleP fontSize="1.6rem" color="white">
-            {subTitle}
-          </SubTitleP>
-        )}
+        {subTitle && <SubTitleBox>{subTitle}</SubTitleBox>}
         {categoryName && (
           <CategorySpan tagColor={tagColor}>{categoryName}</CategorySpan>
         )}
@@ -77,7 +73,7 @@ const TitleH1 = styled.h1`
   z-index: 1;
 `;
 
-const SubTitleP = styled(Paragraph)`
+const SubTitleBox = styled.div`
   font-size: 1.6rem;
   color: ${({ theme }) => theme.colors.white};
   z-index: 1;

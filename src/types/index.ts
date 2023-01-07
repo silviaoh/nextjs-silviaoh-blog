@@ -14,7 +14,7 @@ export interface IBlogPostData {
 
 export interface IPost {
   data: IBlogPostData;
-  content: string;
+  content: { compiledSource: any; frontmatter: any; scope: any };
 }
 
 export interface ICategories {
