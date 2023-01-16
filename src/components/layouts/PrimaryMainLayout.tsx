@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import { FlexMixin, Paragraph } from '../../styles/Common';
+import { FlexMixin } from '../../styles/Common';
 
 interface IPrimaryMainLayoutProps {
   mainTitle: string;
@@ -48,7 +48,7 @@ const MainImageSection = styled.section<{ mainImageUrl: string }>`
     gap: '1.6rem',
   })}
   position: relative;
-  height: 46rem;
+  height: 21rem;
   background-image: ${({ mainImageUrl }) =>
     `url(${mainImageUrl ? mainImageUrl : '/images/common/history.jpg'})`};
   background-size: cover;
