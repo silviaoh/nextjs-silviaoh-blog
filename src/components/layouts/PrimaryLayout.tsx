@@ -7,7 +7,6 @@ import ProfileImageBox from '../profile/ProfileImageBox';
 const PrimaryLayout = (props: IListOfBlogPostsProps | IBlogPostProps) => {
   const { children, categories } = props;
 
-  // 클릭시 사이드 네비게이션 나오게 하는 기능
   const [isEnableSideNav, setIsEnableSideNav] = useState(false);
   const enableSideNav = () => setIsEnableSideNav(true);
   const disableSideNav = () => setIsEnableSideNav(false);
