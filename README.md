@@ -34,9 +34,13 @@ npm run dev
 ---
 
 ```
-📁 content
+📁 articles
 📁 pages
-  |- 📁 blog
+  |- 📁 api
+     |- 📁 post
+     |- 📁 posts
+  |- 📁 category
+  |- 📁 post
   |- _app.tsx
   |- _document.tsx
   |- index.tsx
@@ -48,8 +52,13 @@ npm run dev
       |- 📁 card
       |- 📁 common
       |- 📁 layouts
+      |- 📁 markdown
+      |- 📁 profile
+  |- 📁 service
   |- 📁 styles
   |- 📁 types
   |- 📁 utils
   |- 📁 views
 ```
+
+현재 상태 : 진행중!!!
