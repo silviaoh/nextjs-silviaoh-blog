@@ -1,6 +1,8 @@
-import { Heading } from '@chakra-ui/react';
+import { Heading, Text } from '@chakra-ui/react';
 
 const MDXComponents = {
+  // TODO props => {children: string}
+  p: (props: any) => <Text fontSize="1.6rem">{props.children}</Text>,
   h1: (props: any) => (
     <Heading as="h1" size="xl" fontSize="3.2rem" mb="1.6rem" {...props} />
   ),
