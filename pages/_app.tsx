@@ -7,6 +7,7 @@ import GlobalStyle from '../src/styles/Global';
 import theme from '../src/styles/Theme';
 
 import '@fortawesome/fontawesome-svg-core/styles.css';
+import '../src/styles/prism.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import Loading from '../src/components/common/Loading';
 config.autoAddCss = false;

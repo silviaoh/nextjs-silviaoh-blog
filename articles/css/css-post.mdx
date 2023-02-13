@@ -10,37 +10,42 @@ description: CSS의 설명입니다.
 createdAt: Feb 20, 2022
 ---
 
-# H1제목
+# GFM
 
-## H2제목
+## Autolink literals
 
-### H3제목
+[예시 링크](www.example.com), https://example.com, and contact@example.com.
+<br />
 
-#### H4제목
+## Footnote
 
-##### H5제목
+A note[^1]
 
-###### H6제목
+[^1]: Big note.
 
-```javascript
+## Strikethrough
+
+~one~ or ~~two~~ tildes.
+
+## Table
+
+| a | b  |  c |  d  |
+| - | :- | -: | :-: |
+
+## Tasklist
+
+* [ ] to do
+* [x] done
+
+- 순서 없는 목차1
+- 순서 없는 목차2
+
+## code block
+
+```js
 const a = 1;
-function getA(props) {
-  return a + b;
-}
+const b = 2;
+
+return a + b;
+
 ```
-
-코드블록 테스트
-
-1. 목차!
-   - 하위 목록
-     - 하위 목록
-2. 두번째
-3. 세번째
-
----
-
-> 이건 인용구 문법입니다.
-
-- 점1
-- 점2
-- 점3

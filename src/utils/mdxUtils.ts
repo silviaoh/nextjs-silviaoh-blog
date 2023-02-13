@@ -1,6 +1,8 @@
 import path from 'path';
 import fs from 'fs';
 import matter from 'gray-matter';
+import remarkGfm from 'remark-gfm';
+import rehypePrismPlus from 'rehype-prism-plus';
 import { serialize } from 'next-mdx-remote/serialize';
 
 const systemRootUrl = process.cwd();
@@ -28,7 +30,13 @@ export const getMdxFile = async (directoryName: string, slug: string) => {
   );
 
   const { data, content } = matter(source);
-  const serializedContent = await serialize(content);
+  const serializedContent = await serialize(content, {
+    parseFrontmatter: false,
+    mdxOptions: {
+      remarkPlugins: [[remarkGfm]],
+      rehypePlugins: [[rehypePrismPlus]],
+    },
+  });
 
   return {
     data,

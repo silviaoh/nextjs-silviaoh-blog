@@ -27,6 +27,8 @@
     "react-dom": "^18.2.0",
     "recoil": "^0.7.6",
     "rehype-highlight": "^5.0.2",
+    "rehype-prism-plus": "^1.5.1",
+    "remark-gfm": "^3.0.1",
     "styled-components": "^5.3.5"
   },
   "devDependencies": {
