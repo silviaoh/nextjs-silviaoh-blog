@@ -1,11 +1,22 @@
 import React from 'react';
 import { MDXRemote } from 'next-mdx-remote';
-import { ChakraProvider } from '@chakra-ui/react';
 import styled from 'styled-components';
 import PrimaryMainLayout from '../components/layouts/PrimaryMainLayout';
-import MDXComponents from '../components/markdown/MDXComponents';
 import { FlexMixin } from '../styles/Common';
 import { IPost } from '../types';
+import { Prose, withProse } from '@nikolovlazar/chakra-ui-prose';
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+
+const theme = extendTheme(
+  {},
+  withProse({
+    baseStyle: {
+      h2: {
+        fontWeight: 'light',
+      },
+    },
+  }),
+);
 
 const PostView = (props: IPost) => {
   const { data, content } = props;
@@ -23,8 +34,10 @@ const PostView = (props: IPost) => {
       tagColor={data.tag.color}
       isGridMode={false}
     >
-      <ChakraProvider>
-        <MDXRemote {...content} components={MDXComponents} />
+      <ChakraProvider theme={theme}>
+        <Prose>
+          <MDXRemote {...content} />
+        </Prose>
       </ChakraProvider>
     </PrimaryMainLayout>
   );

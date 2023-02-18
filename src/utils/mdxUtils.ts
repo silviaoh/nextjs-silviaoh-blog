@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import matter from 'gray-matter';
 import remarkGfm from 'remark-gfm';
-import rehypePrismPlus from 'rehype-prism-plus';
+import rehypePrism from 'rehype-prism-plus';
 import { serialize } from 'next-mdx-remote/serialize';
 
 const systemRootUrl = process.cwd();
@@ -34,7 +34,7 @@ export const getMdxFile = async (directoryName: string, slug: string) => {
     parseFrontmatter: false,
     mdxOptions: {
       remarkPlugins: [[remarkGfm]],
-      rehypePlugins: [[rehypePrismPlus]],
+      rehypePlugins: [[rehypePrism]],
     },
   });
 

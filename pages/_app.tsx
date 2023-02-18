@@ -18,7 +18,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Loading />
-
         <Component {...pageProps} />
       </ThemeProvider>
     </RecoilRoot>

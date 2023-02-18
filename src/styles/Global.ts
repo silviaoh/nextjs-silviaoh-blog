@@ -1,20 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-@font-face {
-  font-family: 'D2Coding';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/D2Coding.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
 * {
 	margin: 0;
 	padding: 0;
 	border: 0;
 	box-sizing: border-box;
-	/* color: #2c3748; */
-	font-family: 'Inter', sans-serif;
 	font-size: 1.6rem;
 }
 
@@ -24,6 +15,12 @@ li {
 
 html {
 	font-size: 62.5%;
+}
+
+body {
+	font-family: 'Inter', sans-serif !important;
+	line-height: 1.6 !important;
+	color: #2c3748;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -50,6 +47,30 @@ blockquote:before, blockquote:after,
 q:before, q:after {
 	content: '';
 	content: none;
+}
+
+blockquote{
+  font-size: 1.4em;
+  width:60%;
+  margin:50px auto;
+  font-family:Open Sans;
+  font-style:italic;
+  color: #555555;
+  padding:1.2em 30px 1.2em 75px;
+  border-left:8px solid #78C0A8 ;
+  line-height:1.6;
+  position: relative;
+  background:#EDEDED;
+}
+
+blockquote::before{
+  font-family:Arial;
+  content: "\201C";
+  color:#78C0A8;
+  font-size:4em;
+  position: absolute;
+  left: 10px;
+  top:-10px;
 }
 
 table {
